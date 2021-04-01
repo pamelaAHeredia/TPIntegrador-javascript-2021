@@ -1,3 +1,7 @@
 node_modules/
 src/node_modules/
+<<<<<<< HEAD
 /public/.DS_Store
+=======
+public/.DS_Store
+>>>>>>> b884e24 (actualizando gitignore)
