@@ -25,10 +25,18 @@ function ejercicio7(){
 		log(C)
 }
 
+var dia1 = new Date();
+var dia2 = new Date(1575978300000);
+
+
+
 function imprimirFecha(dia) {
 	log(dia.getDate() + "/" + dia.getMonth() + "/" + dia.getFullYear() + " " + dia.getHours() 
 		+ ":" + dia.getMinutes() + ":" + dia.getSeconds());
 }
+
+var fecha1 = new Date('01/10/2021');
+var fecha2 = new Date('01/01/2021');
 
 
 function intercambiarFechas (dia1, dia2) {
