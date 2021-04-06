@@ -32,8 +32,8 @@ function imprimirFecha(dia2){
 function recibirFechas(f1, f2){
     f2.setFullYear(f2.getFullYear()); 
     f1 = f2.getMonth();
-    imprimirFecha(f1);
-    imprimirFecha(f2);    
+    imprimirFecha(f2);      
+    imprimirFecha(f1);  
 }
 
 function restarFechas(f1, f2){
