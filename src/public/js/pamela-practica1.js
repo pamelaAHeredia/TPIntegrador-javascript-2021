@@ -25,20 +25,25 @@ function ejercicio7(){
 var dia1 = new Date();
 var dia2 = new Date(1575978300000); 
 
-function imprimirFecha(dia2){
-    log("Fecha: "+dia2); 
+//formato dd/mm/aaaa hh:ss.
+
+function imprimirFecha(unDia){ 
+    log(unDia.getDay()+"/"+unDia.getMonth()+"/"+unDia.getFullYear()+" "
+    +unDia.getHours()+":"+unDia.getMinutes());  
 }
+
 
 function recibirFechas(f1, f2){
     f2.setFullYear(f2.getFullYear()); 
     f1 = f2.getMonth();
-    imprimirFecha(f2);      
+    imprimirFecha(f2);     
     imprimirFecha(f1);  
 }
 
 function restarFechas(f1, f2){
-    var nueva = new date (f2-f1); 
-    imprimirFecha(nueva); 
+    const nuevaFecha = Math.abs(f2-f1);
+    const fechaEnDias = Math.ceil(nuevaFecha/(86400000)); //Las fechas son en miliseg = 1000ms * 60m * 60s * 24h
+    log(fechaEnDias);
 }
 
 //ej 9
