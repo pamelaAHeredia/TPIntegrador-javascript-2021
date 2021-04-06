@@ -35,7 +35,7 @@ function imprimirFecha(unDia){
 
 function recibirFechas(f1, f2){
     f2.setFullYear(f2.getFullYear()); 
-    f1 = f2.getMonth();
+    f1.setMonth(f2.getMonth());
     imprimirFecha(f2);     
     imprimirFecha(f1);  
 }
