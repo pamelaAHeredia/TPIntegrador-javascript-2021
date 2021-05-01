@@ -1,0 +1,30 @@
+<html>
+  <head>
+      <title> Practica 3 </title>
+  	  <script src = "js/rickAndMorty.js"></script>
+  </head>
+  <body>
+    <form>
+       <select id = "opcion"> 
+        <option value ="Todos">Todos los personajes</option>
+        <option value= "Human">Humanos</option>
+        <option value= "Alien">Aliens</option>
+        <option value= "Poopybutthole">Poppybuttholeanos</option>
+        <option value= "Humanoid">Humanoides</option>
+        <option value= "unknown">Desconocidos</option>
+        <option value= "Mythological Creature">Criaturas Mitologicas</option>
+        <option value= "Robot">Robots</option>
+        <option value= "Animal">Animales</option>
+        <option value= "Cronenberg">Cronenbergs</option>
+        <option value= "Planet">Planetas</option>
+      </select>
+      <input type= "button" value= "Aplicar" id="boton" onclick= "mostrar()"/>
+    </form>         
+    <ul id="miLista">
+    </ul>
+  	<img id="imagen" />
+  	<script>
+      generarMenu();
+  	</script>
+  </body>
+</html>
