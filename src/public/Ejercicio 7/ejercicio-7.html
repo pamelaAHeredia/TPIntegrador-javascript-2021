@@ -8,9 +8,10 @@
 	<title>PokémonApi-Grupo7</title>
 	<link rel="shortcut icon" href="./pokebola.png" type="image/x-icon"> <!-- -->
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<img src="https://clipground.com/images/pokemon-logo-png-5.png" alt="logo" class="logo">	
+	<img src="https://clipground.com/images/pokemon-logo-png-5.png" alt="logo" class="logo">
 	<style>
 		html {
+			background-color: rgb(255, 0, 0);
 			text-align: center;
 		}
 
@@ -18,6 +19,77 @@
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 			text-align: center;
+			text-transform: capitalize;
+			font-family: Verdana;
+			border-style: solid;
+			border-width: thick;
+			border-radius: 13px;
+			border-color: black;
+			background-color: white;
+		}
+
+		.imagenPokemon {
+			background-color: white;
+			border-radius: 300px;
+			border-style: groove;
+			border-width: 10px;
+			height: 365px;
+			width: 365px;
+		}
+
+		.nombre {
+			background-color: black;
+			margin-top: 0px;
+			margin-left: 450px;
+			margin-right: 450px;
+			border-radius: 13px;
+			color: white;
+			text-transform: capitalize;
+		}
+
+		.experiencia {
+			margin-top: -10px;
+			margin-bottom: 0px;
+			margin-left: 450px;
+			margin-right: 450px;
+			border-radius: 13px;
+			background-color: white
+		}
+
+		.poke_info {
+			border-style: solid;
+			border-width: thick;
+			border-radius: 13px;
+			border-color: black;
+			align-content: center;
+			background-color: chartreuse;
+		}
+
+		.peso {
+			height: 95px;
+			width: 185px;
+			border-style: solid;
+			border-width: thick;
+			border-radius: 13px;
+			border-color: black;
+			margin-left: 635px;
+			align-content: center;
+			font-family: futura;
+			background-color: chartreuse;
+		}
+
+		.altura {
+			height: 95px;
+			width: 185px;
+			margin-top:-95px;
+			border-style: solid;
+			border-width: thick;
+			border-radius: 13px;
+			border-color: black;
+			margin-left: 450px;
+			align-content: center;
+			font-family: futura;
+			background-color: chartreuse;
 		}
 
 		.caja1 {
@@ -53,26 +125,29 @@
 				</h1>
 				<p class="experiencia">experiencia</p>
 			</div>
-			<div class="habilidades">
-				<P>Habilidades:</P>
-				<div class="hab">
+				<div class="peso">
+					<a>Peso:</a>
+					<h3>----</h3>
+				</div>
+				<div class="altura" >
+					<a>Altura:</a>
 					<h3>----</h3>
 				</div>
 			</div>
-
-			<div class="poke_info">
-				<h3>----</h3>
-				<p>Ataque</p>
+			<div class="estiloDiv" style="margin-left:450px ;margin-right: 450px;">
+				<div class="poke_info">
+					<h3>----</h3>
+					<p>Ataque</p>
+				</div>
+				<div class="poke_info">
+					<h3>----</h3>
+					<p>Ataque Especial</p>
+				</div>
+				<div class="poke_info">
+					<h3>----</h3>
+					<p>Defensa</p>
+				</div>
 			</div>
-			<div class="poke_info">
-				<h3>----</h3>
-				<p>Ataque Especial</p>
-			</div>
-			<div class="poke_info">
-				<h3>----</h3>
-				<p>Defensa</p>
-			</div>
-
 		</article>
 	</template>
 
@@ -126,7 +201,8 @@
 					ataque: data.stats[1].base_stat,
 					defensa: data.stats[2].base_stat,
 					especial: data.stats[3].base_stat,
-					habilidad: data.abilities[1].ability.name,
+					peso: data.weight,
+					altura: data.height,
 				}
 				pintarCarta(pokemon);
 			} catch (error) {//si hay error
@@ -150,8 +226,8 @@
 			clone.querySelectorAll('.poke_info h3')[0].textContent = pokemon.ataque + 'K'
 			clone.querySelectorAll('.poke_info h3')[1].textContent = pokemon.especial + 'K'
 			clone.querySelectorAll('.poke_info h3')[2].textContent = pokemon.defensa + 'K'
-			clone.querySelectorAll('.habilidades h3')[0].textContent = pokemon.habilidad 
-
+			clone.querySelectorAll('.peso h3')[0].textContent = pokemon.peso
+			clone.querySelectorAll('.altura h3')[0].textContent = pokemon.altura
 			flex.innerHTML = " ";
 			fragment.appendChild(clone)
 			flex.appendChild(fragment)
