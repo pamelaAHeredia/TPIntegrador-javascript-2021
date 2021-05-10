@@ -6,6 +6,9 @@
 	<!--faltaba agregar el charset -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PokémonApi-Grupo7</title>
+	<link rel="shortcut icon" href="./pokebola.png" type="image/x-icon"> <!-- -->
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<img src="https://clipground.com/images/pokemon-logo-png-5.png" alt="logo" class="logo">	
 	<style>
 		html {
 			text-align: center;
@@ -16,14 +19,63 @@
 			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 			text-align: center;
 		}
+
+		.caja1 {
+			color: black;
+			background-color: yellow;
+			font-family: futura;
+			font-weight: 25px;
+			font-style: oblique;
+
+		}
+
+		.logo {
+			height: 128px;
+			width: 200px;
+			border-color: black;
+			margin-top: -40px;
+		}
 	</style>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
 	<nav class="links"></nav>
-	<div id="miDiv" class="estiloDiv">
-	</div>
+	<div id="miDiv" class="estiloDiv" onClick="addEventListener('click',getCarta,false)"></div>
+	<!-- plantilla de la carta -->
+	<main class="flex"></main>
+	<template id="carta">
+		<article class="carta">
+			<div class="carta-Body">
+				<img alt="imagen" class="imagenPokemon">
+				<h1 class="nombre">
+					nombrePokemon
+					<span>---</span>
+				</h1>
+				<p class="experiencia">experiencia</p>
+			</div>
+			<div class="habilidades">
+				<P>Habilidades:</P>
+				<div class="hab">
+					<h3>----</h3>
+				</div>
+			</div>
+
+			<div class="poke_info">
+				<h3>----</h3>
+				<p>Ataque</p>
+			</div>
+			<div class="poke_info">
+				<h3>----</h3>
+				<p>Ataque Especial</p>
+			</div>
+			<div class="poke_info">
+				<h3>----</h3>
+				<p>Defensa</p>
+			</div>
+
+		</article>
+	</template>
+
 	<script>
 		const links = document.querySelector(".links");
 		var prevlink;
@@ -50,7 +102,6 @@
 				});
 		}
 
-
 		mostrarPokemones(apiUrl);
 		document.addEventListener("click", e => {
 			if (e.target.matches(".links a")) {
@@ -60,7 +111,6 @@
 				mostrarPokemones(e.target.getAttribute("href"));
 			}
 		})
-
 
 		const fetchData = async (id) => {//HACE EL PEDIDO DE INFORMACIÓN A LA POKEAPI
 			try {
@@ -84,8 +134,30 @@
 			}
 		}
 
+		function getCarta(evt) {
+			const poki = evt.target.id
+			fetchData(poki)
+		}
+		const pintarCarta = pokemon => {
+			const flex = document.querySelector('.flex')
+			const template = document.getElementById('carta').content
+			const clone = template.cloneNode(true)
+			const fragment = document.createDocumentFragment()
 
+			clone.querySelector('.imagenPokemon').setAttribute('src', pokemon.imgCvg)
+			clone.querySelector('.nombre').innerHTML = `${pokemon.nombre} <span>${pokemon.hp}hp</span>`
+			clone.querySelector('.experiencia').textContent = pokemon.experiencia + ' experiencia'
+			clone.querySelectorAll('.poke_info h3')[0].textContent = pokemon.ataque + 'K'
+			clone.querySelectorAll('.poke_info h3')[1].textContent = pokemon.especial + 'K'
+			clone.querySelectorAll('.poke_info h3')[2].textContent = pokemon.defensa + 'K'
+			clone.querySelectorAll('.habilidades h3')[0].textContent = pokemon.habilidad 
+
+			flex.innerHTML = " ";
+			fragment.appendChild(clone)
+			flex.appendChild(fragment)
+		}
 	</script>
+	<h4 class="caja1"> PokémonApi Grupo7 - Seminario de lenguajes opción JS</h4>
 </body>
 
 </html>
