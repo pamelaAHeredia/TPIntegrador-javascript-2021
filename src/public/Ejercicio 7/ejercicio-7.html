@@ -27,6 +27,10 @@
 			border-color: black;
 			background-color: white;
 		}
+		h2:hover  {
+    		color : blue;
+    		cursor: pointer;
+		}
 
 		.imagenPokemon {
 			background-color: white;
@@ -157,8 +161,7 @@
 		var nextLink;
 		const pokemonesPorPagina = 26;
 		const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=" + pokemonesPorPagina + "&offset=0"
-		const pokemonesUrl = "https://pokeapi.co/api/v2/pokemon/"
-
+		const imagenPokebola = "https://i.pinimg.com/originals/a7/73/64/a773645c4ef8e7c77eee0f70e3e9e5a4.jpg"
 		function mostrarPokemones(url) {
 			fetch(url)
 				.then(response => response.json())
