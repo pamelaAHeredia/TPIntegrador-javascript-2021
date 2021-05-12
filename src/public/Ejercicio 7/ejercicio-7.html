@@ -205,6 +205,8 @@
 					especial: data.stats[3].base_stat,
 					peso: data.weight,
 					altura: data.height,
+					imgB: data.sprites.front_default,
+
 				}
 				pintarCarta(pokemon);
 			} catch (error) {//si hay error
@@ -222,7 +224,11 @@
 			const clone = template.cloneNode(true)
 			const fragment = document.createDocumentFragment()
 
-			clone.querySelector('.imagenPokemon').setAttribute('src', pokemon.imgCvg)
+
+			if (pokemon.imgCvg != null)  
+				clone.querySelector('.imagenPokemon').setAttribute('src', pokemon.imgCvg)
+			else 
+				clone.querySelector('.imagenPokemon').setAttribute('src', pokemon.imgB);
 			clone.querySelector('.nombre').innerHTML = `${pokemon.nombre} <span>${pokemon.hp}hp</span>`
 			clone.querySelector('.experiencia').textContent = pokemon.experiencia + ' experiencia'
 			clone.querySelectorAll('.poke_info h3')[0].textContent = pokemon.ataque + 'K'
