@@ -100,7 +100,7 @@
 
 <body>
 	<nav class="links"></nav>
-	<div id="miDiv" class="estiloDiv" onClick="addEventListener('click',getCarta,false)"></div>
+	<div id="miDiv" class="estiloDiv"></div>
 	<!-- plantilla de la carta -->
 	<main class="flex"></main>
 	<template id="carta">
@@ -153,6 +153,7 @@
 				.then(pok => {
 					for (let i = 0; i < pok.results.length; i++) {
 						let text = document.createElement("h2");
+						text.addEventListener('click',getCarta,false)
 						let node = document.createTextNode(pok.results[i].name);
 						text.appendChild(node);
 						text.id = pok.results[i].name;
