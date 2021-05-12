@@ -44,8 +44,7 @@
 		.nombre {
 			background-color: black;
 			margin-top: 0px;
-			margin-left: 450px;
-			margin-right: 450px;
+
 			border-radius: 13px;
 			color: white;
 			text-transform: capitalize;
@@ -54,13 +53,13 @@
 		.experiencia {
 			margin-top: -10px;
 			margin-bottom: 0px;
-			margin-left: 450px;
-			margin-right: 450px;
+			
 			border-radius: 13px;
 			background-color: white
 		}
 
 		.poke_info {
+			height: 100px;
 			border-style: solid;
 			border-width: thick;
 			border-radius: 13px;
@@ -76,7 +75,7 @@
 			border-width: thick;
 			border-radius: 13px;
 			border-color: black;
-			margin-left: 635px;
+			margin-left: 235px;
 			align-content: center;
 			font-family: futura;
 			background-color: chartreuse;
@@ -90,7 +89,7 @@
 			border-width: thick;
 			border-radius: 13px;
 			border-color: black;
-			margin-left: 450px;
+			
 			align-content: center;
 			font-family: futura;
 			background-color: chartreuse;
@@ -110,6 +109,14 @@
 			width: 200px;
 			border-color: black;
 			margin-top: -40px;
+		}
+
+		.carta{
+			background-color:slateblue;
+			border-radius: 15px;
+			margin-left: 425px;
+			margin-right: 425px;
+			border-style:groove;
 		}
 	</style>
 </head>
@@ -138,7 +145,7 @@
 					<h3>----</h3>
 				</div>
 			</div>
-			<div class="estiloDiv" style="margin-left:450px ;margin-right: 450px;">
+			<div class="estiloDiv" Style="background-color: slateblue;">
 				<div class="poke_info">
 					<h3>----</h3>
 					<p>Ataque</p>
@@ -150,6 +157,10 @@
 				<div class="poke_info">
 					<h3>----</h3>
 					<p>Defensa</p>
+				</div>
+				<div class="poke_info">
+					<h3>----</h3>
+					<p>Defensa especial</p>
 				</div>
 			</div>
 		</article>
@@ -203,6 +214,7 @@
 					ataque: data.stats[1].base_stat,
 					defensa: data.stats[2].base_stat,
 					especial: data.stats[3].base_stat,
+					defensa_especial: data.stats[4].base_stat,
 					peso: data.weight,
 					altura: data.height,
 					imgB: data.sprites.front_default,
@@ -234,8 +246,10 @@
 			clone.querySelectorAll('.poke_info h3')[0].textContent = pokemon.ataque + 'K'
 			clone.querySelectorAll('.poke_info h3')[1].textContent = pokemon.especial + 'K'
 			clone.querySelectorAll('.poke_info h3')[2].textContent = pokemon.defensa + 'K'
-			clone.querySelectorAll('.peso h3')[0].textContent = pokemon.peso
-			clone.querySelectorAll('.altura h3')[0].textContent = pokemon.altura
+			clone.querySelectorAll('.poke_info h3')[3].textContent = pokemon.defensa_especial + 'K'
+			console.log(pokemon.tipo)
+			clone.querySelectorAll('.peso h3')[0].textContent = pokemon.peso + "KG"
+			clone.querySelectorAll('.altura h3')[0].textContent = pokemon.altura +"ft."
 			flex.innerHTML = " ";
 			fragment.appendChild(clone)
 			flex.appendChild(fragment)
