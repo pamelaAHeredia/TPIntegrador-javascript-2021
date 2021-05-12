@@ -27,9 +27,10 @@
 			border-color: black;
 			background-color: white;
 		}
-		h2:hover  {
-    		color : blue;
-    		cursor: pointer;
+
+		h2:hover {
+			color: blue;
+			cursor: pointer;
 		}
 
 		.imagenPokemon {
@@ -42,6 +43,7 @@
 		}
 
 		.nombre {
+			display: grid;
 			background-color: black;
 			margin-top: 0px;
 
@@ -51,9 +53,10 @@
 		}
 
 		.experiencia {
+			display: grid;
 			margin-top: -10px;
 			margin-bottom: 0px;
-			
+
 			border-radius: 13px;
 			background-color: white
 		}
@@ -65,33 +68,6 @@
 			border-radius: 13px;
 			border-color: black;
 			align-content: center;
-			background-color: chartreuse;
-		}
-
-		.peso {
-			height: 95px;
-			width: 185px;
-			border-style: solid;
-			border-width: thick;
-			border-radius: 13px;
-			border-color: black;
-			margin-left: 235px;
-			align-content: center;
-			font-family: futura;
-			background-color: chartreuse;
-		}
-
-		.altura {
-			height: 95px;
-			width: 185px;
-			margin-top:-95px;
-			border-style: solid;
-			border-width: thick;
-			border-radius: 13px;
-			border-color: black;
-			
-			align-content: center;
-			font-family: futura;
 			background-color: chartreuse;
 		}
 
@@ -111,12 +87,13 @@
 			margin-top: -40px;
 		}
 
-		.carta{
-			background-color:slateblue;
+		.carta {
+			display: grid;
+			background-color: slateblue;
 			border-radius: 15px;
 			margin-left: 425px;
 			margin-right: 425px;
-			border-style:groove;
+			border-style: groove;
 		}
 	</style>
 </head>
@@ -135,34 +112,32 @@
 					<span>---</span>
 				</h1>
 				<p class="experiencia">experiencia</p>
-			</div>
-				<div class="peso">
-					<a>Peso:</a>
-					<h3>----</h3>
+				<div class="estiloDiv" Style="background-color: slateblue; ">
+					<div class="poke_info">
+						<h3>----</h3>
+						<a>Peso</a>
+					</div>
+					<div class="poke_info">
+						<h3>----</h3>
+						<a>Peso</a>
+					</div>
+					<div class="poke_info">
+						<h3>----</h3>
+						<p>Ataque</p>
+					</div>
+					<div class="poke_info">
+						<h3>----</h3>
+						<p>Ataque Especial</p>
+					</div>
+					<div class="poke_info">
+						<h3>----</h3>
+						<p>Defensa</p>
+					</div>
+					<div class="poke_info">
+						<h3>----</h3>
+						<p>Defensa especial</p>
+					</div>
 				</div>
-				<div class="altura" >
-					<a>Altura:</a>
-					<h3>----</h3>
-				</div>
-			</div>
-			<div class="estiloDiv" Style="background-color: slateblue;">
-				<div class="poke_info">
-					<h3>----</h3>
-					<p>Ataque</p>
-				</div>
-				<div class="poke_info">
-					<h3>----</h3>
-					<p>Ataque Especial</p>
-				</div>
-				<div class="poke_info">
-					<h3>----</h3>
-					<p>Defensa</p>
-				</div>
-				<div class="poke_info">
-					<h3>----</h3>
-					<p>Defensa especial</p>
-				</div>
-			</div>
 		</article>
 	</template>
 
@@ -236,9 +211,9 @@
 			const clone = template.cloneNode(true)
 			const fragment = document.createDocumentFragment()
 
-			if (pokemon.imgCvg != null)  
+			if (pokemon.imgCvg != null)
 				clone.querySelector('.imagenPokemon').setAttribute('src', pokemon.imgCvg)
-			else 
+			else
 				clone.querySelector('.imagenPokemon').setAttribute('src', pokemon.imgB);
 			clone.querySelector('.nombre').innerHTML = `${pokemon.nombre} <span>${pokemon.hp}hp</span>`
 			clone.querySelector('.experiencia').textContent = pokemon.experiencia + ' experiencia'
@@ -246,9 +221,8 @@
 			clone.querySelectorAll('.poke_info h3')[1].textContent = pokemon.especial + 'K'
 			clone.querySelectorAll('.poke_info h3')[2].textContent = pokemon.defensa + 'K'
 			clone.querySelectorAll('.poke_info h3')[3].textContent = pokemon.defensa_especial + 'K'
-			console.log(pokemon.tipo)
-			clone.querySelectorAll('.peso h3')[0].textContent = pokemon.peso + "KG"
-			clone.querySelectorAll('.altura h3')[0].textContent = pokemon.altura +"ft."
+			clone.querySelectorAll('.poke_info h3')[4].textContent = pokemon.peso + "KG"
+			clone.querySelectorAll('.poke_info h3')[5].textContent = pokemon.altura + "ft."
 			flex.innerHTML = " ";
 			fragment.appendChild(clone)
 			flex.appendChild(fragment)
