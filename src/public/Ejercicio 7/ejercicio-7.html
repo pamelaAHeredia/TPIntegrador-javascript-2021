@@ -119,7 +119,7 @@
 					</div>
 					<div class="poke_info">
 						<h3>----</h3>
-						<a>Peso</a>
+						<a>Altura</a>
 					</div>
 					<div class="poke_info">
 						<h3>----</h3>
@@ -217,12 +217,12 @@
 				clone.querySelector('.imagenPokemon').setAttribute('src', pokemon.imgB);
 			clone.querySelector('.nombre').innerHTML = `${pokemon.nombre} <span>${pokemon.hp}hp</span>`
 			clone.querySelector('.experiencia').textContent = pokemon.experiencia + ' experiencia'
-			clone.querySelectorAll('.poke_info h3')[0].textContent = pokemon.ataque + 'K'
-			clone.querySelectorAll('.poke_info h3')[1].textContent = pokemon.especial + 'K'
-			clone.querySelectorAll('.poke_info h3')[2].textContent = pokemon.defensa + 'K'
-			clone.querySelectorAll('.poke_info h3')[3].textContent = pokemon.defensa_especial + 'K'
-			clone.querySelectorAll('.poke_info h3')[4].textContent = pokemon.peso + "KG"
-			clone.querySelectorAll('.poke_info h3')[5].textContent = pokemon.altura + "ft."
+			clone.querySelectorAll('.poke_info h3')[2].textContent = pokemon.ataque + 'K'
+			clone.querySelectorAll('.poke_info h3')[3].textContent = pokemon.especial + 'K'
+			clone.querySelectorAll('.poke_info h3')[4].textContent = pokemon.defensa + 'K'
+			clone.querySelectorAll('.poke_info h3')[5].textContent = pokemon.defensa_especial + 'K'
+			clone.querySelectorAll('.poke_info h3')[0].textContent = pokemon.peso + "KG"
+			clone.querySelectorAll('.poke_info h3')[1].textContent = pokemon.altura + "ft."
 			flex.innerHTML = " ";
 			fragment.appendChild(clone)
 			flex.appendChild(fragment)
