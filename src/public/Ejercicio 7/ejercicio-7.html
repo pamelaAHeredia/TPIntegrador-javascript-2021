@@ -153,7 +153,7 @@
 				.then(pok => {
 					for (let i = 0; i < pok.results.length; i++) {
 						let text = document.createElement("h2");
-						text.addEventListener('click',getCarta,false)
+						text.addEventListener('click',getCarta)
 						let node = document.createTextNode(pok.results[i].name);
 						text.appendChild(node);
 						text.id = pok.results[i].name;
