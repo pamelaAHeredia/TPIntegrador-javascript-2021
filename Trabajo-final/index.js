@@ -4,7 +4,7 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 const ppt = require('./piedraPapelTijera');
-const ttt = require('./tatetiBack');
+const ttt = require('./backEndTateti/tatetiBack');
 const hm = require ('./HangMan')
 const cors = require('cors');
 
@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 
-//Piedra papel tijera lagarto spock
+// //Piedra papel tijera lagarto spock
 function verificarSala(idSala) {
 	let salasJson = fs.readFileSync('./infoSalas.json','utf8');
 	let salas = JSON.parse(salasJson);
@@ -73,18 +73,11 @@ app.delete('/PPTLS/:idSala', (req, res) => {
 	res.status(200).send("Sala eliminada");
 }); 
 
-
-
 //Ta te ti
-
-app.get('/tateti/' , (req,res) => {
-	res.sendFile(path.resolve(__dirname, 'public/tateti/tateti.html'));
-});
- //controllers
+//controllers
 app.post('/tateti/salas', ttt.crearSala);
 app.post('/tateti/salas/unirse/:salaId', ttt.unirseSala);
-app.get('/tateti/salas/:salaId', ttt.solicitarInfoSala);
-// guarda en .json el archivo con el tablero actual.
+app.post('/tateti/info', ttt.solicitarInfoSala);
 app.patch('/tateti/salas/:salaId',ttt.jugarMano)
 
 

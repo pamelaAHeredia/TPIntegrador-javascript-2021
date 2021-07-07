@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='es'>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="tateti.css">
+    <link rel="shortcut icon" href="./tateti.png" type="image/x-icon">
+    <title>Ta Te Ti # </title>
+</head>
+
+<body style="background-color: rgb(97, 135, 204); padding-left: 45%;">
+    
+    <h1 class="titulo">.TaTeTi grupo 7.</h1>
+
+    <div>
+        <h3 id="room-id-display" class="display">SIN SALA ASIGNADA</h3>
+        <h3 id="tries-display" class="display"></h3>
+        <h3 id="turn-display" class="display"></h3>
+        <h3i id ="ficha" > TU FICHA: <h3>
+    </div>
+    <table class="botones" id="tablero" style = "display : none "> 
+        <tr>
+            <td><input type=button value="" name="btn0" id="0" class="botones" onclick="clicked(this)" /></td>
+            <td><input type=button value="" name="btn1" id="1" class="botones" onclick="clicked(this)" /></td>
+            <td><input type=button value="" name="btn2" id="2" class="botones" onclick="clicked(this)" /></td>
+        </tr>
+        <tr>
+            <td><input type=button value="" name="btn3" id="3" class="botones" onclick="clicked(this)" /></td>
+            <td><input type=button value="" name="btn4" id="4" class="botones" onclick="clicked(this)" /></td>
+            <td><input type=button value="" name="btn5" id="5" class="botones" onclick="clicked(this)" /></td>
+        </tr>
+        <tr>
+            <td><input type=button value="" name="btn6" id="6" class="botones" onclick="clicked(this)" /></td>
+            <td><input type=button value="" name="btn7" id="7" class="botones" onclick="clicked(this)" /></td>
+            <td><input type=button value="" name="btn8" id="8" class="botones" onclick="clicked(this)" /></td>
+        </tr>
+    </table>
+    <div class="display" style="margin-top: 250px" >
+        <input type=button value="Reiniciar Partida" onclick="requestRestart()" />
+        <button id= "crearSala" onclick="requestNewRoom()">
+            CREAR SALA
+        </button>
+        <p>Ingrese a una sala por Id: </p>
+        <input type="text" id="sala" name="salaId" placeholder="Id de Sala" requiered><br><br>
+        <button id="join" onclick="joinRoomRequest()" >Ingresar </button>
+        <h2>Seminario De Lenguajes - JavaScript</h2>
+    </div>
+    <script type="text/javascript" src='tatetiFront.js'></script>
+    <!-- EL SCRIPT DEBE IR AL PRINCIPIO CON ONLOAD -->
+</body>
+
+</html>

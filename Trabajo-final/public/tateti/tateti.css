@@ -1,0 +1,29 @@
+html,
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.titulo{
+    background-color: gold;
+     color: black; 
+     margin-right: 57%;
+     align-content: center;
+     border-radius: 13%;
+     font-family: Arial, Helvetica, sans-serif;
+}
+.botones {
+    width: 80px;
+    height: 80px;
+    color: white;
+    font-size: 50px;
+    border-radius: 15%;
+    border-color: blueviolet;
+    /* padding-left: 45%; */
+}
+.display{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: "flex-start"; 
+    /*align-content:"center";*/
+    justify-content: center;
+}
