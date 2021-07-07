@@ -7,21 +7,15 @@ const ppt = require('./piedraPapelTijera');
 const ttt = require('./backEndTateti/tatetiBack');
 const hm = require ('./HangMan')
 const cors = require('cors');
+const SalasManager = require('./shared/SalasManager');
+const sm = new SalasManager('infoSalas.json', 'utf-8');
+
 
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 
 // //Piedra papel tijera lagarto spock
-function verificarSala(idSala) {
-	let salasJson = fs.readFileSync('./infoSalas.json','utf8');
-	let salas = JSON.parse(salasJson);
-	let datos = salas.find(e => e.id == idSala);
-	return {
-		datosSala: datos,
-		todasLasSalas: salas
-	}
-}
 
 app.post('/PPTLS/', (req, res) => {
 	let sala = ppt.crearSala(req.body.mejorDe);
@@ -29,9 +23,9 @@ app.post('/PPTLS/', (req, res) => {
 });
 
 app.patch("/PPTLS/:idSala/", (req, res) => {
-	let datos = verificarSala(req.params.idSala);
-	if (datos.datosSala != undefined) {
-		let sala = ppt.unirseASala(datos.datosSala);
+	let datos = sm.findSala(req.params.idSala);
+	if (datos != undefined) {
+		let sala = ppt.unirseASala(datos);
 		res.status(200).json(sala)
 	}
 	else 
@@ -39,10 +33,10 @@ app.patch("/PPTLS/:idSala/", (req, res) => {
 }); 
 
 app.post('/PPTLS/:idSala', (req, res) => {
-	let datos = verificarSala(req.params.idSala);
-	if (datos.datosSala != undefined) {
-		ppt.guardarMovimiento(req.body, datos.todasLasSalas);
-		res.status(200).json("Movimiento guardado")
+	let datos = sm.findSalaPorPlayerId(req.body.playerId);
+	if (datos != undefined) {
+		ppt.guardarMovimiento(req.body.movimiento, req.body.playerId, datos);
+		res.status(200).json("OK")
 	}
 	else
 		res.status(400).json({error: true, mensaje: "No se encontro la sala de juego"});
@@ -52,25 +46,22 @@ app.get('/PPTLS/:idSala/:idJugador', (req, res) => {
 	let infoPartida = ppt.verificarGanador(req.params.idSala, req.params.idJugador);
 	if (infoPartida == undefined)
 		res.status(200).json({wait: true})
-	else if (infoPartida == true)
-		res.status(200).json({fin: true})
 	else
 		res.status(200).json(infoPartida);
-});
-
-app.patch('/PPTLS/:idSala/:idGanador/:idJugador', (req, res) => {
-	let datos = verificarSala(req.params.idSala);
-	if (datos.datosSala != undefined) {
-		let fin = ppt.actualizarSala(datos.todasLasSalas, req.params.idGanador, req.params.idJugador);
-		res.status(200).json(fin);
-	}
-	else
-		res.status(400).json({error: true, mensaje: "ID de sala incorrecto"});
 }) 
 
-app.delete('/PPTLS/:idSala', (req, res) => {
-	ppt.eliminarSala(req.params.idSala);
-	res.status(200).send("Sala eliminada");
+app.patch('/PPTLS/:result/:idGanador/:idJugador', (req, res) => {
+	let datos = sm.findSalaPorPlayerId(req.params.idJugador);
+	let fin = ppt.actualizarSala(datos, req.params.idGanador, req.params.idJugador, req.params.result);
+	res.status(200).json(fin);
+}) 
+
+app.delete('/PPTLS/:idJugador', (req, res) => {
+	let exito = ppt.eliminarSala(req.params.idJugador);
+	if (exito)
+		res.status(200).json("Sala eliminada");
+    else
+    	res.status(400).json({error: true, mensaje: "No se pudo eliminar la sala"});
 }); 
 
 //Ta te ti

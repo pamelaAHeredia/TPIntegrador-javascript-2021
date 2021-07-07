@@ -22,11 +22,26 @@ class SalasManager {
         const salaEncontrada = salas.find( (sala) => sala.id === id );
         return salaEncontrada;
     }
-    
+
+    findSalaPorPlayerId(playerId) {
+        const salas = this.findTodasLasSalas();
+        const salaEncontrada = salas.find( (sala) => sala.playerId == playerId);
+        return salaEncontrada;
+    } 
+
     guardarSala(sala) {
         const salas = this.findTodasLasSalas();
         salas.push(sala);
         this.modificarTodasLasSalas(salas);
+    }
+
+    eliminarSalaPorPlayerId(playerId) {
+        const salas = this.findTodasLasSalas();
+        const indiceDeSalaEncontrada = salas.findIndex( (sala) => sala.playerId === playerId );
+        if (indiceDeSalaEncontrada === -1) return false;
+        salas.splice(indiceDeSalaEncontrada, 1)
+        this.modificarTodasLasSalas(salas);
+        return true;
     }
     
     eliminarSalaPorID(id) {
@@ -37,7 +52,7 @@ class SalasManager {
         this.modificarTodasLasSalas(salas);
         return true;
     }
-    
+
     modificarSalaPorId(id, sala) {
         const salas = this.findTodasLasSalas();
         const indiceDeSalaEncontrada = salas.findIndex( (sala) => sala.id === id );
@@ -45,6 +60,15 @@ class SalasManager {
         salas[indiceDeSalaEncontrada] = sala;
         this.modificarTodasLasSalas(salas);
         return true;
+    }
+
+    modificarSalaPorPlayerId(playerId, sala) {
+        const salas = this.findTodasLasSalas();
+        const indiceDeSalaEncontrada = salas.findIndex( (sala) => sala.playerId === playerId );
+        if (indiceDeSalaEncontrada === -1) return false;
+        salas[indiceDeSalaEncontrada] = sala;
+        this.modificarTodasLasSalas(salas);
+        return true;        
     }
 }
 

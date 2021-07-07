@@ -20,7 +20,8 @@ function crearSala(mejorDe) {
 		playerId: short(),
 		movimiento: "", 
 		partidaA: mejorDe,
-		puntaje: 0
+		puntaje: 0,
+		puntajeRival: 0
 	};
 	sm.guardarSala(sala);
 	return sala;
@@ -32,18 +33,16 @@ function unirseASala(infoSala) {
 		playerId: short(),
 		movimiento: "",
 		partidaA: infoSala.partidaA,
-		puntaje: 0
+		puntaje: 0,
+		puntajeRival: 0
 	};
 	sm.guardarSala(sala);
 	return sala;
 }
 
-function guardarMovimiento(info, salas) {
-	salas.forEach(id => {
-		if (id.playerId == info.playerId) 
-			id.movimiento = info.movimiento;
-		});
-	fs.writeFileSync('infoSalas.json', JSON.stringify(salas, null, 2));
+function guardarMovimiento(mov, playerId, sala) {
+	sala.movimiento = mov;
+	sm.modificarSalaPorPlayerId(playerId, sala);
 }
 
 
@@ -93,11 +92,7 @@ function verificarGanador(idSala, idJugador) {
 	let salas = JSON.parse(salasJson);
 	let adversario = salas.find(v => (v.id == idSala) && (v.playerId != idJugador));
 	let host = salas.find(v => (v.id == idSala) && (v.playerId == idJugador));
-	if (adversario == undefined && host == undefined) {
-		let fin = true
-		return fin
-	}
-	else if (adversario == undefined || adversario.movimiento == '' || host.movimiento == '' )  
+	if (adversario == undefined || adversario.movimiento == '' || host.movimiento == '' )  
 		return undefined
 	else {
 		let ganador;
@@ -116,24 +111,22 @@ function verificarGanador(idSala, idJugador) {
 } 
 
 
-function actualizarSala(salas, idGanador, idJugador) {
+function actualizarSala(datosPlayer, idGanador, idJugador, result) {
 	let fin = false;
-	salas.forEach(i => {
-		if (i.playerId == idJugador) {
-			i.movimiento = '';
-			if (i.playerId == idGanador) {
-				i.puntaje++;
-				if (i.puntaje == i.partidaA) 
-					fin = true;
-			}
-		}
-	})
-	fs.writeFileSync('infoSalas.json', JSON.stringify(salas, null, 2));
+	datosPlayer.movimiento = '';
+	if (datosPlayer.playerId == idGanador)
+		datosPlayer.puntaje++
+	else if (result != "Empate")
+		datosPlayer.puntajeRival++;
+	if (datosPlayer.puntaje == datosPlayer.partidaA || datosPlayer.puntajeRival == datosPlayer.partidaA)
+		fin = true;
+	sm.modificarSalaPorPlayerId(datosPlayer.playerId, datosPlayer);
 	return fin;
-}  
+}   
 
 
-function eliminarSala(idSala) {
-	for (let i = 0; i < 2; i++)
-		sm.eliminarSalaPorID(idSala);
+function eliminarSala(idJugador) {
+	let exito = sm.eliminarSalaPorPlayerId(idJugador)
+	return exito;
 } 
+

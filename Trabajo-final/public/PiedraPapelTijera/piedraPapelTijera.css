@@ -1,0 +1,80 @@
+html {
+	background-color: indigo;
+}
+
+.opcionesPartida {
+	text-align: center;
+	position: relative;
+    top:-360px;
+    margin-left: -1000px;
+}
+
+
+.link {
+    margin-right: 90px;
+    margin-left: 90px;
+}
+
+.imagenes {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 100px;
+  margin: auto;
+  width: 75%;
+  padding: 20px;
+}
+
+.informacion {
+	text-align: center;
+	position: relative;
+    top:-175px;
+    margin-right: 185px;
+}
+
+
+#Piedra {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  background-image: url('piedra.png');
+  background-size: cover;
+  background-color: white;
+  border: 5px solid #000000
+  }
+#Papel {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  background-image: url('papel.png');
+  background-size: cover;
+  background-color: white;
+  border: 5px solid #000000
+  }
+ #Tijera {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  background-image: url('tijera.png');
+  background-size: cover;
+  background-color: white;
+  border: 5px solid #000000
+  }
+  #Lagarto {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  background-image: url('lagarto.png');
+  background-size: cover;
+  background-color: white;
+  border: 5px solid #000000
+  }
+  #Spock {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  background-image: url('spock.png');
+  background-size: cover;
+  background-color: white;
+  border: 5px solid #000000
+  }
