@@ -1,80 +1,88 @@
 html {
-	background-color: indigo;
+  background-color:  rgb(97, 135, 204);
 }
 
 .opcionesPartida {
-	text-align: center;
-	position: relative;
-    top:-360px;
-    margin-left: -1000px;
+  text-align: center;
+  position: relative;
+    top:-375px;
+    margin-left: -975px;
 }
 
 
 .link {
-    margin-right: 90px;
-    margin-left: 90px;
+  position: relative;
+  left: 105px;  
 }
 
 .imagenes {
   display: flex;
   justify-content: space-between;
   position: relative;
-  top: 100px;
+  top: 50px;
   margin: auto;
   width: 75%;
   padding: 20px;
 }
 
 .informacion {
-	text-align: center;
-	position: relative;
+  text-align: center;
+  position: relative;
     top:-175px;
-    margin-right: 185px;
+    margin-right: 50px;
 }
 
+#opcionesSalida a {
+  position:relative; 
+    left:355px;
+    top:50px;
+    font-size: 200%;
+    margin: 20px;
+    color: black;
+    }
 
 #Piedra {
   cursor: pointer;
   width: 150px;
   height: 150px;
-  background-image: url('piedra.png');
+  background-image: url('piedra.svg');
   background-size: cover;
-  background-color: white;
-  border: 5px solid #000000
+  background-color: rgb(97, 135, 204);
+  border: 5px rgb(97, 135, 204)
   }
 #Papel {
   cursor: pointer;
   width: 150px;
   height: 150px;
-  background-image: url('papel.png');
+  background-image: url('papel.svg');
   background-size: cover;
-  background-color: white;
-  border: 5px solid #000000
+  background-color: rgb(97, 135, 204);
+  border: 5px rgb(97, 135, 204)
   }
  #Tijera {
   cursor: pointer;
   width: 150px;
   height: 150px;
-  background-image: url('tijera.png');
+  background-image: url('tijera.svg');
   background-size: cover;
-  background-color: white;
-  border: 5px solid #000000
+  background-color: rgb(97, 135, 204);
+  border: 5px rgb(97, 135, 204)
   }
   #Lagarto {
   cursor: pointer;
   width: 150px;
   height: 150px;
-  background-image: url('lagarto.png');
+  background-image: url('lagarto.svg');
   background-size: cover;
-  background-color: white;
-  border: 5px solid #000000
+  background-color: rgb(97, 135, 204);
+  border: 5px rgb(97, 135, 204)
   }
   #Spock {
   cursor: pointer;
   width: 150px;
   height: 150px;
-  background-image: url('spock.png');
+  background-image: url('spock.svg');
   background-size: cover;
-  background-color: white;
-  border: 5px solid #000000
+  background-color: rgb(97, 135, 204);
+  border: 5px rgb(97, 135, 204)
   }

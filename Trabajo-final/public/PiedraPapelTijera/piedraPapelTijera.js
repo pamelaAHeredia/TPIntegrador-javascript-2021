@@ -1,5 +1,5 @@
 var infoSala;
-const url = "http://localhost:3000/PiedraPapelTijera.html?idSala=";
+const url = "http://localhost:3000/piedraPapelTijera/piedraPapelTijera.html?idSala=";
 
 function cargarOpciones(valorBoton, valorReal) {
 	let divBotones = document.getElementById("botones");
@@ -23,7 +23,9 @@ function asignarSala() {
 	let paramPos = window.location.search.indexOf(parametro);
 	if (paramPos === -1) {
 		cargarOpciones(1, 1);
+		modificarBotones(true);
 		document.getElementById("botones").addEventListener('click', e => {
+			modificarBotones(false);
 			let limite = {mejorDe: e.target.id}
 			const values = {
 				method: "POST",
@@ -101,7 +103,6 @@ function verificarEstado() {
 		.then(response => response.json())
 		.then(info => {
 			if (info.wait) {
-				console.log("Esperando...")
 				setTimeout(verificarEstado, 500);
 			}
 			else  {
@@ -154,12 +155,12 @@ function eliminarSala() {
 function opcionesSalida() {
 		let salida = document.getElementById("opcionesSalida");
 		let elementA = document.createElement('a');
-        let text = document.createTextNode("Ir a pagina principal");
-        elementA.setAttribute('href', "index.html");
+        let text = document.createTextNode("Ir a pagina principal   ");
+        elementA.setAttribute('href', "../index.html");
         elementA.appendChild(text);
         salida.appendChild(elementA);
         elementA = document.createElement('a');
-        text = document.createTextNode("Crear nueva sala");
+        text = document.createTextNode("   Crear nueva sala");
         elementA.setAttribute('href', 'PiedraPapelTijera.html')
         elementA.appendChild(text);
         salida.appendChild(elementA);

@@ -1,25 +1,26 @@
 <html>
   <head>
     <title>Piedra, Papel, Tijera, Lagarto, Spock</title>
-    <script  type="text/javascript" src="./PiedraPapelTijera.js"></script>
-    <link rel="stylesheet" href="PiedraPapelTijera.css">
+    <h1 style="text-align: center;"> Grupo 7</h1>
+    <script  type="text/javascript" src="./piedraPapelTijera.js"></script>
+    <link rel="stylesheet" href="piedraPapelTijera.css">
   </head>
   <body onload="asignarSala()">
-  	<div>
-  		<h1 style="text-align: center"> Piedra, Papel, Tijera, Lagarto, Spock  </h1> <br> <br>
-  		<input type="text" id="link" class= "link" readonly=""></input>
-  		<h4 id="linkText"style="margin-left:85px ;margin-right: 85px;"> Envia este link a tu oponente</h4>
-  	</div>
-  	<div class="imagenes">
-  		<input type="button" id="Piedra" class="boton" onclick="enviarEleccion(this.id)" /> 
-  		<input type="button" id= "Papel" class="boton" onclick="enviarEleccion(this.id)"/>
-  		<input type="button" id= "Tijera" class="boton" onclick="enviarEleccion(this.id)"/>
-  		<input type="button" id= "Lagarto"class="boton" onclick="enviarEleccion(this.id)"/>
-  		<input type="button" id= "Spock" class="boton" onclick="enviarEleccion(this.id)"/>
-  	</div>
-  	<div id= "msj" class = "informacion"></div>
-  	<div id= "botones" class="opcionesPartida"></div>
-  	<div id="opcionesSalida"> </div>
-  	</div>
+    <div>
+      <h1 style="text-align: center;" > Piedra, Papel, Tijera, Lagarto, Spock  </h1> <br> <br>
+      <input type="text" id="link" class= "link" readonly=""></input>
+      <h3 id="linkText"style="margin-left:85px; margin-right: 85px;"> Envia este link a tu oponente</h3>
+    </div>
+    <div class="imagenes">
+      <input type="button" id="Piedra" class="boton" onclick="enviarEleccion(this.id)" /> 
+      <input type="button" id= "Papel" class="boton" onclick="enviarEleccion(this.id)"/>
+      <input type="button" id= "Tijera" class="boton" onclick="enviarEleccion(this.id)"/>
+      <input type="button" id= "Lagarto"class="boton" onclick="enviarEleccion(this.id)"/>
+      <input type="button" id= "Spock" class="boton" onclick="enviarEleccion(this.id)"/>
+    </div>
+    <div id= "msj" class = "informacion"></div>
+    <div id= "botones" class="opcionesPartida"></div>
+    <div id="opcionesSalida" class="opcSalida"> </div>
+    </div>
   </body>
 </html>

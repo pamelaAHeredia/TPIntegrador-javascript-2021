@@ -1,7 +1,8 @@
 const short = require('shortid');
 const fs = require('fs');
-const SalasManager = require('./shared/SalasManager');
-const sm = new SalasManager('infoSalas.json', 'utf-8');
+const path = require('path')
+const SalasManager = require('../shared/SalasManager');
+const sm = new SalasManager(path.join(__dirname, './infoSalas.json'), 'utf-8');
 
 
 module.exports = {
@@ -88,7 +89,7 @@ function posiblidades(movOponente, movHost) {
 
 
 function verificarGanador(idSala, idJugador) {
-	let salasJson = fs.readFileSync('./infoSalas.json','utf8');
+	let salasJson = fs.readFileSync(path.join(__dirname, './infoSalas.json'), 'utf-8');
 	let salas = JSON.parse(salasJson);
 	let adversario = salas.find(v => (v.id == idSala) && (v.playerId != idJugador));
 	let host = salas.find(v => (v.id == idSala) && (v.playerId == idJugador));
