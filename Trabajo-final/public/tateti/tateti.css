@@ -4,26 +4,45 @@ body {
     margin: 0px;
     padding: 0px;
 }
-.titulo{
-    background-color: gold;
-     color: black; 
-     margin-right: 57%;
-     align-content: center;
-     border-radius: 13%;
-     font-family: Arial, Helvetica, sans-serif;
-}
+
 .botones {
+    border-width: 5px;
     width: 80px;
     height: 80px;
-    color: white;
+    color: black;
     font-size: 50px;
+    font-family:Arial, Helvetica, sans-serif;
     border-radius: 15%;
-    border-color: blueviolet;
-    /* padding-left: 45%; */
+    border-color: rgb(21, 8, 214);
+    background-color: rgb(247, 211, 211);
 }
 .display{
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     align-items: "flex-start"; 
-    /*align-content:"center";*/
     justify-content: center;
 }
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: -20px;
+    width: 100%;
+    background-color:yellow;
+    color: black;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+   
+ }
+ .headder {
+    position: fixed;
+    left: 0;
+    top: -20px;
+    width: 100%;
+    background-color:yellow;
+    color: black;
+    text-align: center;
+    font-family:  Helvetica;
+ }
+ .finale{
+     position:fixed;
+     top: 170px;
+ }

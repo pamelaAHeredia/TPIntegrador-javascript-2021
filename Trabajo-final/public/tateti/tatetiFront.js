@@ -1,11 +1,14 @@
 let intentosRestantes = 0;
 let partidaFinalizada = false;
 let partidaGanada = false;
+let ganador;
 let salaID;
 let playerID;
 
 const ERROR = document.getElementById('error');
 const ROOM_ID_DISPLAY = document.getElementById('room-id-display');
+const ROOM_DISPLAY_DIV = document.getElementById('div1');
+const ROOM_ID_DISPLAY1 = document.getElementById('room-id-display1');
 const TRIES_DISPLAY = document.getElementById('tries-display');
 const TURN = document.getElementById('turn-display');
 const BOARD = document.getElementById("tablero");
@@ -31,6 +34,7 @@ async function getData(URL, body = {}, method = "GET") {
     return data
 }
 
+//función para crear una nueva sala
 async function requestNewRoom() {
     const nuevaSala = await getData('/tateti/salas', {}, "POST");
     if (nuevaSala.error) {
@@ -41,26 +45,28 @@ async function requestNewRoom() {
     playerID = nuevaSala.idPlayer;
     intentosRestantes = nuevaSala.intentosRestantes;
     ROOM_ID_DISPLAY.innerHTML = `ID DE SALA: ${salaID}`;
+    //ROOM_DISPLAY_DIV.style.style.display = "block";
+    ROOM_ID_DISPLAY1.value = `${salaID}`;
     TRIES_DISPLAY.innerHTML = `INTENTOS RESTANTES: ${intentosRestantes}`;
     TURN.innerHTML = `TURNO: ${nuevaSala.turno}`;
     document.getElementById("ficha").innerHTML = 'Sos el jugador X';
     alert(nuevaSala.mensaje);
+    document.getElementById("create").style.display = "none";
     document.getElementById("tablero").style.display = "block";
-    document.getElementById("join").style.display = "block";
-    document.getElementById("crearSala").disabled = true;
-    document.getElementById("join").disabled = true;
+    document.getElementById("div1").style.display = "block";
+    document.getElementById("room-id-textBox").style.display = "block"
+    // document.getElementById("join").disabled = true;
 }
 
+//función para unirse a una partida. 
 async function joinRoomRequest() {
     let salaInputElement = document.getElementById("sala");
     document.getElementById("tablero").style.display = "block"; //inicializa el tablero en la pantalla
-
     if (!salaInputElement.value) {//no se ingresa nada en el input, no se puede procesar sin un valor
         alert('Ingrese un numero de sala para continuar');
         return 0;
     }
     salaID = salaInputElement.value;
-
     let joinsala = await getData(`/tateti/salas/unirse/${salaID}`, { salaID }, "POST");
     if (joinsala.error) {
         alert(joinsala.mensaje);
@@ -68,21 +74,25 @@ async function joinRoomRequest() {
     }
     playerID = joinsala.idPlayer;
     intentosRestantes = joinsala.intentosRestantes;
-
-    alert(joinsala.mensaje);
     ROOM_ID_DISPLAY.innerHTML = `ID DE SALA: ${salaID}`;
     TRIES_DISPLAY.innerHTML = `INTENTOS RESTANTES: ${intentosRestantes}`;
     TURN.innerHTML = `TURNO: ${joinsala.turno}`;
+    document.getElementById("div1").style.display = "block";
     document.getElementById("ficha").innerHTML = 'Sos el jugador O';
-    console.log(joinsala);
-    document.getElementById("crearSala").disabled = true;
-    document.getElementById("join").disabled = true;
-
+    document.getElementById("tablero").style.display = "block";
+    document.getElementById("create").style.display = "none";
+    alert(joinsala.mensaje);
 }
-setInterval(async () => {
-    await displayTime();
-}, 2500);
 
+//funcion setea un intervalo en 1,5 segundos y llama a la función que consulta el estado de la partida
+setInterval(async () => {
+    if (!partidaFinalizada) {
+        await displayTime();
+    }
+}, 1000);
+
+
+//función consulta estado continuamente (con el intervalo seteado anteriormente)
 async function displayTime() {
     if (playerID && salaID) {
         let response = await getData(`/tateti/info`, { salaID, playerID }, "POST");
@@ -90,19 +100,30 @@ async function displayTime() {
             alert(response.mensaje);
             return
         }
-        TURN.innerHTML = `TURNO: ${response.turno}`;
-        ROOM_ID_DISPLAY.innerHTML = `ID DE SALA: ${response.salaID}`;
-        TRIES_DISPLAY.innerHTML = `INTENTOS RESTANTES: ${response.intentosRestantes}`;
-        setBoardProgress(response.progresoDeTablero);
-        if (response.finalizada) {
-            alert(response.mensaje);
-            return
+        if (!response.finalizada) {
+            TURN.innerHTML = `TURNO: ${response.turno}`;
+            ROOM_ID_DISPLAY.innerHTML = `ID DE SALA: ${response.salaID}`;
+            TRIES_DISPLAY.innerHTML = `INTENTOS RESTANTES: ${response.intentosRestantes}`;
+            setBoardProgress(response.progresoDeTablero);
+        } else {
+            partidaFinalizada = true;
+            clearInterval();
+            if (response.turno == 'X') {
+                document.getElementById("mensajeFinal").innerHTML = 'Partido Terminado, ha ganado el O';
+            } else {
+                document.getElementById("mensajeFinal").innerHTML = 'Partido Terminado, ha ganado la X';
+            }
+            document.getElementById("mensajeFinal").style.display = "block";
+            document.getElementById("tablero").style.display = "none";
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div2").style.display = "block";
+            return;
         }
     }
 }
 
+//función envía un movimiento y un id de jugador al backend y actualiza la partida 
 async function sendMoveRequest(move) {
-
     const response = await getData(`/tateti/salas/${salaID}`, { move: move, idPlayer: playerID }, "PATCH")
     if (response.error) {
         alert(response.mensaje);
@@ -114,35 +135,71 @@ async function sendMoveRequest(move) {
     TRIES_DISPLAY.innerHTML = `INTENTOS RESTANTES: ${response.intentosRestantes}`;
     setBoardProgress(response.progresoDeTablero);
     if (response.finalizada) {
-        alert(response.mensaje);
+
+        // alert(response.mensaje);
+        document.getElementById("tablero").style.visibility = "hidden";
         return
     }
 }
 
+//función que "escribe" el tablero actualizado 
 function setBoardProgress(arrayOfMoves) {
     for (i = 0; i < 9; i++) {
         document.getElementById(i).value = arrayOfMoves[i];
     }
 }
 
+//función toma el "id" del casillero seleccionado 
 function clicked(boton) {
     let seleccion = parseInt(boton.id);
     sendMoveRequest(seleccion);
 }
 
-async function requestRestart() {
-    let salaid = document.getElementById("sala");
-    let salaId = salaID.value;
-    alert('Reseteando la sala: ', salaid);
-    for (i = 0; i < 9; i++) {
-        document.getElementById(i).value = "";
+//copia la id de la sala 
+function copyingId() {
+    //document.getElementById("copyRoom")
+    let text = document.getElementById("room-id-display1").value;
+    copyTextToClipboard(text);
+}
+async function copyTextToClipboard(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        alert('Id de la sala copiado al portapapeles');
+    } catch (err) {
+        alert('Error al copiar el texto: ', err);
     }
-
-    let resetSala = await getData(`/tateti/salas`, { salaId }, "POST");
-    alert(resetSala.mensaje);
-    ROOM_ID_DISPLAY.innerHTML = `ID DE SALA: ${resetSala.salaID}`;
-    TRIES_DISPLAY.innerHTML = `INTENTOS RESTANTES: ${resetSala.intentosRestantes}`;
-    TURN.innerHTML = `TURNO: ${resetSala.turno}`;
-    console.log(resetSala);
+    document.getElementById("create").style.display = "none";
+    document.getElementById("room-id-textBox").style.display = "none";
 }
 
+//función borra la sala del json y "sale" de la sala.
+// async function cerrarSala(salaID) {
+//     const response = await getData(`/tateti/cerrar/${salaID}`, { salaID }, "DELETE")
+//     if (response.error) {
+//         alert(response.mensaje);
+//         move.innerHTML.disabled = false;
+//         return
+//     }
+// }
+function cerrarSala(salaID) {
+    fetch(`/tateti/cerrar/${salaID}`, { salaID },"DELETE")
+        .then(res => res.json())
+        .then(succes => {
+            if (succes.error) {
+                throw Error(succes.mensaje)
+            }
+        })
+        .catch(err => {
+            alert(err);
+        })
+}
+
+function otraPartida() {
+    cerrarSala(salaID);
+    location.reload();
+}
+
+function cerrarSalaOnclick() {
+    cerrarSala(salaID);
+    location.href = "../index.html";
+}

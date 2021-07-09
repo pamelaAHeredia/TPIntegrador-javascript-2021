@@ -13,7 +13,7 @@ module.exports = {
     unirseSala: unirseSalaController,
     jugarMano: jugarManoController,
     solicitarInfoSala: solicitarInfoSalaController,
-    reiniciarPartida: reiniciarPartidaController,
+    cerrarSala: cerrarSalaController,
 }
 
 // crear una sala
@@ -173,6 +173,9 @@ function jugarManoController(req, res) {
                     error: false,
                     mensaje: `Ha ganado X!`
                 }
+                sala.finalizada=true;
+                sm.modificarSalaPorId(salaID, sala);
+                
                 res.status(200).json(MensajeRespondeAMovimiento);
                 return;
             //gana el circulo 
@@ -187,6 +190,8 @@ function jugarManoController(req, res) {
                     error: false,
                     mensaje: `Ha ganado O!`
                 }
+                sala.finalizada=true;
+                sm.modificarSalaPorId(salaID, sala);
                 res.status(200).json(MensajeRespondeAMovimiento);        
             return;
             }    
@@ -203,8 +208,9 @@ function jugarManoController(req, res) {
                 error: false,
                 mensaje: "Empate! :( no quedan casillas por llenar en el tablero"
             }
+            sala.finalizada=true;
             res.status(200).json(MensajeRespondeAMovimiento);
-
+            sm.modificarSalaPorId(salaID, sala);
             return;
         } else {
             // Movimiento intermedio del partido (nadie ganó, empató, ni perdió la partida)
@@ -236,7 +242,7 @@ function solicitarInfoSalaController(req, res) {
     if (!sala) return res.status(404).json({ error: true, mensaje: "Sala no encontrada" });
 
     if (!sala.playersIDs.some(player => player === playerId)) return res.status(401).json({ error: true, mensaje: "No eres un jugador de esta sala" });
-
+   
     // valido para pedir informacion
     const MensajeInformacionPedida = {
         salaID,
@@ -252,48 +258,11 @@ function solicitarInfoSalaController(req, res) {
     res.status(200).json(MensajeInformacionPedida);
 }
 
-function reiniciarPartidaController(req, res) {
-    const salaID = req.params.salaId;
+function cerrarSalaController(salaID){
     const sala = sm.findSala(salaID);
-    console.log(sala)
-    //la sala que nos envía el cliente, no existe en el json
     if (!sala) {
         res.status(404).json({ error: true, mensaje: "Sala no encontrada" })
         return;
     }
-    // validar que el jugador pertenezca a la sala
-    if (idPlayer !== sala.playersIDs[0] && idPlayer !== sala.playersIDs[1]) {
-        res.status(400).json({ error: true, mensaje: "Alto ahí! Usted no pertenece a esta sala!" })
-        return;
-    }
-    const progresoX = [null, null, null, null, null];
-    const progresoO = [null, null, null, null];
-    const intentosRestantes = 9;
-    const turno = 'X';
-    const resetSala = {
-        id: sala.id,
-        playersIDs: sala.playersIDs,
-        progresoDeTablero: [null, null, null, null, null, null, null, null, null],
-        progresoX,
-        progresoO,
-        turno,
-        intentosRestantes,
-        finalizada: false,
-        gano: false
-    }
-    sm.modificarSalaPorId(salaID, resetSala);
-
-    const MensajeResetSala = {
-        salaID: sala.id,
-        intentosRestantes: sala.intentosRestantes,
-        progresoDeTablero: sala.progresoDeTablero,
-        turno: sala.turno,
-        error: false,
-        mensaje: "Reiniciado la sala con exito",
-        finalizada: sala.finalizada
-    }
-
-    res.status(200).json(MensajeResetSala);
+    sm.eliminarSalaPorID(salaID);
 }
-
-

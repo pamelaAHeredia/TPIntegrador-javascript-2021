@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const PORT = 3000;
-const ppt = require('./backEndPPTLS/piedraPapelTijera');
+const ppt = require('./backEndPPTLS/PiedraPapelTijera');
 const ttt = require('./backEndTateti/tatetiBack');
 const hm = require ('./HangMan')
 //const cors = require('cors');
@@ -69,8 +69,8 @@ app.delete('/PPTLS/:idJugador', (req, res) => {
 app.post('/tateti/salas', ttt.crearSala);
 app.post('/tateti/salas/unirse/:salaId', ttt.unirseSala);
 app.post('/tateti/info', ttt.solicitarInfoSala);
-app.patch('/tateti/salas/:salaId',ttt.jugarMano)
-
+app.patch('/tateti/salas/:salaId',ttt.jugarMano);
+app.delete('/tateti/cerrar/:salaId',ttt.cerrarSala);
 
 //Hangman
 app.get('/HangMan/' , (req, res) => {
