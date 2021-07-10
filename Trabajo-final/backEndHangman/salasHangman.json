@@ -20,5 +20,25 @@
           "intentosRestantes": 2,
           "finalizada": false,
           "gano": false
+     },
+     {
+          "id": "rdyamro0O",
+          "palabra": "watermelon",
+          "pista": "fruits",
+          "progresoDePalabra": [
+               null,
+               "a",
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null
+          ],
+          "intentosRestantes": 6,
+          "finalizada": false,
+          "gano": false
      }
 ]

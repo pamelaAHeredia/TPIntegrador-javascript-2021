@@ -1,3 +1,42 @@
 [
-
+     {
+          "id": "5vPHTTh3f",
+          "playerId": "pwLAab9s6f",
+          "movimiento": "",
+          "partidaA": "2",
+          "puntaje": 0,
+          "puntajeRival": 0
+     },
+     {
+          "id": "p-7HJSkVG",
+          "playerId": "Jm9KkXQptS",
+          "movimiento": "",
+          "partidaA": "2",
+          "puntaje": 0,
+          "puntajeRival": 0
+     },
+     {
+          "id": "RCbHZJv2F",
+          "playerId": "Nh1v41_ueH",
+          "movimiento": "",
+          "partidaA": "botones",
+          "puntaje": 0,
+          "puntajeRival": 0
+     },
+     {
+          "id": "0OymGnIFO",
+          "playerId": "LLIU-qS2Yb",
+          "movimiento": "",
+          "partidaA": "2",
+          "puntaje": 1,
+          "puntajeRival": 1
+     },
+     {
+          "id": "0OymGnIFO",
+          "playerId": "qqcBoUyCY",
+          "movimiento": "",
+          "partidaA": "2",
+          "puntaje": 1,
+          "puntajeRival": 1
+     }
 ]
