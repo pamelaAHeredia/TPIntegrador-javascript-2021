@@ -166,5 +166,90 @@
           "intentosRestantes": 9,
           "finalizada": false,
           "gano": false
+     },
+     {
+          "id": "fQP2IT3Gg",
+          "playersIDs": [
+               "tziL9OUMzG",
+               null
+          ],
+          "progresoDeTablero": [
+               "X",
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null
+          ],
+          "progresoX": [
+               0
+          ],
+          "progresoO": [],
+          "turno": "O",
+          "intentosRestantes": 8,
+          "finalizada": false,
+          "gano": false
+     },
+     {
+          "id": "6Tgl27YRr",
+          "playersIDs": [
+               "b4g0_ZWwGc",
+               null
+          ],
+          "progresoDeTablero": [
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null
+          ],
+          "progresoX": [],
+          "progresoO": [],
+          "turno": "X",
+          "intentosRestantes": 9,
+          "finalizada": false,
+          "gano": false
+     },
+     {
+          "id": "dysxN07dh",
+          "playersIDs": [
+               "4eK5xg5FQp",
+               "I0G31SI5o"
+          ],
+          "progresoDeTablero": [
+               "O",
+               "O",
+               "X",
+               "X",
+               "O",
+               "O",
+               "X",
+               "X",
+               "X"
+          ],
+          "progresoX": [
+               6,
+               3,
+               7,
+               2,
+               8
+          ],
+          "progresoO": [
+               4,
+               0,
+               1,
+               5
+          ],
+          "turno": "O",
+          "intentosRestantes": 0,
+          "finalizada": true,
+          "gano": false
      }
 ]

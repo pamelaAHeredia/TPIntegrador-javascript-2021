@@ -3,7 +3,7 @@ const url = "http://localhost:3000/piedraPapelTijera/piedraPapelTijera.html?idSa
 
 function cargarOpciones(valorBoton, valorReal) {
 	let divBotones = document.getElementById("botones");
-	let text = document.createElement("h3");
+	let text = document.createElement("h4");
 	let node = document.createTextNode("Partida al mejor de...");
 	text.appendChild(node);
 	divBotones.appendChild(text);
@@ -55,8 +55,7 @@ function asignarSala() {
 				} else {
 					console.log(res);
 					infoSala = res;
-					document.getElementById("link").remove();
-					document.getElementById("linkText").remove();
+					document.getElementById("link").value = url+res.id;
 					}
 				})
 				.catch(err => {
@@ -109,7 +108,7 @@ function verificarEstado() {
 				let insertarADiv = document.getElementById("msj");
 				insertarADiv.innerHTML = '';
 				let text = document.createElement("h2");
-				let node = document.createTextNode(info.result+"!!,  el adversario eligio "+info.movContrario);
+				let node = document.createTextNode(info.result+"! "+info.movHost+ " VS "+ info.movContrario);
 				text.appendChild(node);
 				insertarADiv.appendChild(text);
 				setTimeout(function() { actualizarSala(info.idGanador, info.result) }, 1000);
@@ -123,12 +122,12 @@ function actualizarSala(idGanador, result) {
 		.then (ok => {
 			modificarBotones(false);
 			if (ok == false)
-				setTimeout(verificarEstado, 500)
+				setTimeout(verificarEstado, 2500)
 			else {
 				let insertarADiv = document.getElementById("msj");
 				insertarADiv.innerHTML = '';
 				let text = document.createElement("h2");
-				let node = document.createTextNode("FIN DE LA PARTIDA, " + result + "!!!!");
+				let node = document.createTextNode("Fin de la partida,  " + result + "!!");
 				text.appendChild(node);
 				insertarADiv.appendChild(text);
 				eliminarSala();
@@ -156,12 +155,12 @@ function opcionesSalida() {
 		let salida = document.getElementById("opcionesSalida");
 		let elementA = document.createElement('a');
         let text = document.createTextNode("Ir a pagina principal   ");
-        elementA.setAttribute('href', "../index.html");
+        elementA.setAttribute('href', "index.html");
         elementA.appendChild(text);
         salida.appendChild(elementA);
         elementA = document.createElement('a');
         text = document.createTextNode("   Crear nueva sala");
-        elementA.setAttribute('href', 'PiedraPapelTijera.html')
+        elementA.setAttribute('href', 'piedraPapelTijera.html')
         elementA.appendChild(text);
         salida.appendChild(elementA);
 }	

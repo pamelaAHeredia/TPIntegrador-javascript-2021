@@ -1,88 +1,126 @@
 html {
-  background-color:  rgb(97, 135, 204);
+  background-color:  #77AFBF;
+  font-family: Courier New;
 }
 
 .opcionesPartida {
   text-align: center;
   position: relative;
-    top:-375px;
-    margin-left: -975px;
-}
-
-
-.link {
-  position: relative;
-  left: 105px;  
+  top:-350px;
+  right: 545px;
 }
 
 .imagenes {
   display: flex;
   justify-content: space-between;
   position: relative;
-  top: 50px;
+  top: 105px;
   margin: auto;
   width: 75%;
+  background-color: #417b8b;
   padding: 20px;
+  outline-style: double;
+  outline-width: thick;
+  outline-color:  black;
 }
 
 .informacion {
   text-align: center;
   position: relative;
-    top:-175px;
-    margin-right: 50px;
+  top: -200px;
+  margin-right: 100px;
 }
 
 #opcionesSalida a {
   position:relative; 
-    left:355px;
-    top:50px;
-    font-size: 200%;
-    margin: 20px;
-    color: black;
-    }
+  left:250px;
+  top:100px;
+  font-size: 200%;
+  margin: 20px;
+  color: black;
+}
+
+#Piedra:hover {
+  -ms-transform: scale(1.2); 
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.2); 
+}
 
 #Piedra {
+  transition: transform .2s;
   cursor: pointer;
   width: 150px;
   height: 150px;
   background-image: url('piedra.svg');
   background-size: cover;
-  background-color: rgb(97, 135, 204);
-  border: 5px rgb(97, 135, 204)
-  }
+  background-color:   #417b8b;
+  border: #417b8b;
+}
+
+#Papel:hover {
+  -ms-transform: scale(1.2); 
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.2); 
+}
+
 #Papel {
+  transition: transform .2s;
   cursor: pointer;
   width: 150px;
   height: 150px;
   background-image: url('papel.svg');
   background-size: cover;
-  background-color: rgb(97, 135, 204);
-  border: 5px rgb(97, 135, 204)
-  }
- #Tijera {
+  background-color:   #417b8b;
+  border: #417b8b;
+}
+
+ #Tijera:hover {
+  -ms-transform: scale(1.2); 
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.2); 
+} 
+
+#Tijera {
+  transition: transform .2s;
   cursor: pointer;
   width: 150px;
   height: 150px;
   background-image: url('tijera.svg');
   background-size: cover;
-  background-color: rgb(97, 135, 204);
-  border: 5px rgb(97, 135, 204)
-  }
-  #Lagarto {
+  background-color:   #417b8b;
+  border: #417b8b;
+}
+
+#Lagarto:hover {
+  -ms-transform: scale(1.2); 
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.2); 
+}  
+
+#Lagarto {
+  transition: transform .2s;
   cursor: pointer;
   width: 150px;
   height: 150px;
   background-image: url('lagarto.svg');
   background-size: cover;
-  background-color: rgb(97, 135, 204);
-  border: 5px rgb(97, 135, 204)
-  }
-  #Spock {
+  background-color:   #417b8b;
+  border: #417b8b;
+}
+
+#Spock:hover {
+  -ms-transform: scale(1.2); 
+  -webkit-transform: scale(1.2); 
+  transform: scale(1.2); 
+} 
+
+#Spock {
+  transition: transform .2s;
   cursor: pointer;
   width: 150px;
   height: 150px;
   background-image: url('spock.svg');
   background-size: cover;
-  background-color: rgb(97, 135, 204);
-  border: 5px rgb(97, 135, 204)
-  }
+  background-color:   #417b8b;
+  border: #417b8b;
+}

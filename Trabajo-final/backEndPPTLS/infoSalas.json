@@ -1,3 +1,18 @@
 [
-
+     {
+          "id": "i9ESMi_zu",
+          "playerId": "i1rUe3sJdk",
+          "movimiento": "Papel",
+          "partidaA": "1",
+          "puntaje": 0,
+          "puntajeRival": 0
+     },
+     {
+          "id": "oXzw_L2lY",
+          "playerId": "9dvy7jSrA",
+          "movimiento": "",
+          "partidaA": "3",
+          "puntaje": 0,
+          "puntajeRival": 2
+     }
 ]
