@@ -1,1 +1,24 @@
-[]
+[
+     {
+          "id": "xJuQbUE0u",
+          "palabra": "ornitorrinco",
+          "pista": "animales",
+          "progresoDePalabra": [
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null
+          ],
+          "intentosRestantes": 2,
+          "finalizada": false,
+          "gano": false
+     }
+]

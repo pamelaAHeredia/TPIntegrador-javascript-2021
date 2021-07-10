@@ -3,11 +3,12 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const PORT = 3000;
-const ppt = require('./backEndPPTLS/PiedraPapelTijera');
+const ppt = require('./backEndPiedraPapelTijera/PiedraPapelTijera');
 const ttt = require('./backEndTateti/tatetiBack');
 const hm = require ('./backEndHangman/hangMan');
-const SalasManager = require('./shared/SalasManager');
-const sm = new SalasManager(path.join(__dirname, './backEndPPTLS/infoSalas.json'), 'utf-8');
+const SalasManager = require('./shared/salasManager');
+const smp = new SalasManager(path.join(__dirname, './backEndPiedraPapelTijera/infoSalas.json'), 'utf-8');
+
 
 
 app.use(express.static('public'));
@@ -21,7 +22,7 @@ app.post('/PPTLS/', (req, res) => {
 });
 
 app.patch("/PPTLS/:idSala/", (req, res) => {
-	let datos = sm.findSala(req.params.idSala);
+	let datos = smp.findSala(req.params.idSala);
 	if (datos != undefined) {
 		let sala = ppt.unirseASala(datos);
 		res.status(200).json(sala)
@@ -31,7 +32,7 @@ app.patch("/PPTLS/:idSala/", (req, res) => {
 }); 
 
 app.post('/PPTLS/:idSala', (req, res) => {
-	let datos = sm.findSalaPorPlayerId(req.body.playerId);
+	let datos = smp.findSalaPorPlayerId(req.body.playerId);
 	if (datos != undefined) {
 		ppt.guardarMovimiento(req.body.movimiento, req.body.playerId, datos);
 		res.status(200).json("OK")
@@ -49,7 +50,7 @@ app.get('/PPTLS/:idSala/:idJugador', (req, res) => {
 }) 
 
 app.patch('/PPTLS/:result/:idGanador/:idJugador', (req, res) => {
-	let datos = sm.findSalaPorPlayerId(req.params.idJugador);
+	let datos = smp.findSalaPorPlayerId(req.params.idJugador);
 	let fin = ppt.actualizarSala(datos, req.params.idGanador, req.params.idJugador, req.params.result);
 	res.status(200).json(fin);
 }) 

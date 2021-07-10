@@ -155,7 +155,7 @@ function opcionesSalida() {
 		let salida = document.getElementById("opcionesSalida");
 		let elementA = document.createElement('a');
         let text = document.createTextNode("Ir a pagina principal   ");
-        elementA.setAttribute('href', "index.html");
+        elementA.setAttribute('href', "../index.html");
         elementA.appendChild(text);
         salida.appendChild(elementA);
         elementA = document.createElement('a');

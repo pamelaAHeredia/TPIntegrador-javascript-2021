@@ -1,8 +1,8 @@
 const short = require('shortid');
 const fs = require('fs');
 const path = require('path')
-const SalasManager = require('../shared/SalasManager');
-const sm = new SalasManager(path.join(__dirname, './infoSalas.json'), 'utf-8');
+const SalasManager = require('../shared/salasManager');
+const smp = new SalasManager(path.join(__dirname, './infoSalas.json'), 'utf-8');
 
 
 module.exports = {
@@ -15,6 +15,7 @@ module.exports = {
 };
 
 
+
 function crearSala(mejorDe) {
 	let sala = {
 		id: short(),
@@ -24,7 +25,7 @@ function crearSala(mejorDe) {
 		puntaje: 0,
 		puntajeRival: 0
 	};
-	sm.guardarSala(sala);
+	smp.guardarSala(sala);
 	return sala;
 }
 
@@ -37,13 +38,13 @@ function unirseASala(infoSala) {
 		puntaje: 0,
 		puntajeRival: 0
 	};
-	sm.guardarSala(sala);
+	smp.guardarSala(sala);
 	return sala;
 }
 
 function guardarMovimiento(mov, playerId, sala) {
 	sala.movimiento = mov;
-	sm.modificarSalaPorPlayerId(playerId, sala);
+	smp.modificarSalaPorPlayerId(playerId, sala);
 }
 
 
@@ -121,13 +122,13 @@ function actualizarSala(datosPlayer, idGanador, idJugador, result) {
 		datosPlayer.puntajeRival++;
 	if (datosPlayer.puntaje == datosPlayer.partidaA || datosPlayer.puntajeRival == datosPlayer.partidaA)
 		fin = true;
-	sm.modificarSalaPorPlayerId(datosPlayer.playerId, datosPlayer);
+	smp.modificarSalaPorPlayerId(datosPlayer.playerId, datosPlayer);
 	return fin;
 }   
 
 
 function eliminarSala(idJugador) {
-	let exito = sm.eliminarSalaPorPlayerId(idJugador)
+	let exito = smp.eliminarSalaPorPlayerId(idJugador)
 	return exito;
 } 
 
