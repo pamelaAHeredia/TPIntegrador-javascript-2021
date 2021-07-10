@@ -5,20 +5,13 @@ const app = express();
 const PORT = 3000;
 const ppt = require('./backEndPPTLS/PiedraPapelTijera');
 const ttt = require('./backEndTateti/tatetiBack');
-<<<<<<< HEAD
-const hm = require ('./HangMan')
-const cors = require('cors');
-=======
 const hm = require ('./backEndHangman/hangMan');
-//const cors = require('cors');
->>>>>>> 1fe9158 (cambios ahorcado)
 const SalasManager = require('./shared/SalasManager');
 const sm = new SalasManager(path.join(__dirname, './backEndPPTLS/infoSalas.json'), 'utf-8');
 
 
 app.use(express.static('public'));
 app.use(express.json());
-app.use(cors());
 
 // //Piedra papel tijera lagarto spock
 
