@@ -1,10 +1,10 @@
 const short = require('shortid');
 const fs = require('fs');
-const jsonWins = fs.readFileSync('./winsTateti.json', 'utf-8');
+const jsonWins = fs.readFileSync('backEndTateti/winsTateti.json', 'utf-8');
 const wins = JSON.parse(jsonWins);
 const SalasManager = require('../shared/SalasManager');
 // API BASE DE DATOS JSON
-const SALAS_FILENAME = './tatetiSalas.json';
+const SALAS_FILENAME = 'backEndTateti/tatetiSalas.json';
 const sm = new SalasManager(SALAS_FILENAME, 'utf-8');
 
 // UTILIDADES
@@ -258,11 +258,13 @@ function solicitarInfoSalaController(req, res) {
     res.status(200).json(MensajeInformacionPedida);
 }
 
-function cerrarSalaController(salaID){
+function cerrarSalaController(req,res){
+    const salaID = req.params.salaId;
     const sala = sm.findSala(salaID);
     if (!sala) {
         res.status(404).json({ error: true, mensaje: "Sala no encontrada" })
         return;
     }
     sm.eliminarSalaPorID(salaID);
+    res.status(200).json({ error: false, mensaje: "Sala eliminada" })
 }

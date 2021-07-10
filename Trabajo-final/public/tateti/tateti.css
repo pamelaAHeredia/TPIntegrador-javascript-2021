@@ -9,17 +9,18 @@ body {
     border-width: 5px;
     width: 80px;
     height: 80px;
-    color: black;
+    color: #9d2020;
     font-size: 50px;
     font-family:Arial, Helvetica, sans-serif;
     border-radius: 15%;
-    border-color: rgb(21, 8, 214);
-    background-color: rgb(247, 211, 211);
+    border-color: #c9d3e8;
+    background-color: #e3d9ed;
 }
 .display{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     align-items: "flex-start"; 
     justify-content: center;
+    color: #ae7526;
 }
 .footer {
     position: fixed;

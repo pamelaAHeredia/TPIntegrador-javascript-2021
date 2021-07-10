@@ -182,7 +182,7 @@ async function copyTextToClipboard(text) {
 //     }
 // }
 function cerrarSala(salaID) {
-    fetch(`/tateti/cerrar/${salaID}`, { salaID },"DELETE")
+    fetch(`/tateti/cerrar/${salaID}`, { method: "DELETE"} )
         .then(res => res.json())
         .then(succes => {
             if (succes.error) {
