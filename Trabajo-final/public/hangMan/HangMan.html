@@ -1,56 +1,83 @@
 <!DOCTYPE html>
 
 <html>
-  <meta charset="utf-8">
+<meta charset="utf-8">
+
 <head>
   <title>Hangman</title>
   <link rel="stylesheet" href="hangman.css">
+  <script type="text/javascript" defer src="hangman.js"></script>
 </head>
 
-<body>
-  <h1 style="align-items: flex-start" align="center">H A N G M A N </h1>
-  <div>
-    <h3 id="room-id-display" style="align-items: flex-start" align="center">SIN SALA ASIGNADA</h3>
-    <h3 id="tries-display" style="align-items: flex-start" align="center"></h3>
+<body align=center style="align-items: flex-start; background-color: #eaffff;">
+  <header>
+    <h1>A H O R C A D O </h1>
+  </header>
+
+  <div class="box1">
+    <p id="room-id-display">SIN SALA ASIGNADA</p>
+    <p id="tries-display"></p>
+    <p id="the-clue" style="display: none">PISTA</p>
   </div>
 
-  <!--teclado para jugar-->
-  <div id="miDiv" class= "teclado" style = "align-items: flex-start" align="center">
-      <input type="button" value="a" class="letra" onclick="clicked(this)" />
-      <input type="button" value="b" class="letra" onclick="clicked(this)" />
-      <input type="button" value="c" class="letra" onclick="clicked(this)" />
-      <input type="button" value="d" class="letra" onclick="clicked(this)" />
-      <input type="button" value="e" class="letra" onclick="clicked(this)" />
-      <input type="button" value="f" class="letra" onclick="clicked(this)" />
-      <input type="button" value="g" class="letra" onclick="clicked(this)" />
-      <input type="button" value="h" class="letra" onclick="clicked(this)" />
-      <input type="button" value="i" class="letra" onclick="clicked(this)" />
-      <input type="button" value="j" class="letra" onclick="clicked(this)" />
-      <input type="button" value="j" class="letra" onclick="clicked(this)" />
-      <input type="button" value="l" class="letra" onclick="clicked(this)" />
-      <input type="button" value="m" class="letra" onclick="clicked(this)" />
-      <input type="button" value="n" class="letra" onclick="clicked(this)" />
-      <input type="button" value="ñ" class="letra" onclick="clicked(this)" />
-      <input type="button" value="o" class="letra" onclick="clicked(this)" />
-      <input type="button" value="p" class="letra" onclick="clicked(this)" />
-      <input type="button" value="q" class="letra" onclick="clicked(this)" />
-      <input type="button" value="r" class="letra" onclick="clicked(this)" />
-      <input type="button" value="s" class="letra" onclick="clicked(this)" />
-      <input type="button" value="t" class="letra" onclick="clicked(this)" />
-      <input type="button" value="u" class="letra" onclick="clicked(this)" />
-      <input type="button" value="v" class="letra" onclick="clicked(this)" />
-      <input type="button" value="w" class="letra" onclick="clicked(this)" />
-      <input type="button" value="x" class="letra" onclick="clicked(this)" />
-      <input type="button" value="y" class="letra" onclick="clicked(this)" />
-      <input type="button" value="z" class="letra" onclick="clicked(this)" />
-  </div>
-  <div id="word-progress-display">
-  </div>
   <p id="error"></p>
-  <button onclick="requestNewRoom()">
-    CREAR SALA
-  </button>
-  <script type="text/javascript" src="./hangman.js"></script>
+  <button id="new-room-button" class="buttons" onclick="requestNewRoom()"> CREAR SALA</button>
+  <div class="imagen">
+    <h2>
+      <img src="hangmanPng/capa1.png" id="l1" style="display: none;">
+      <img src="hangmanPng/capa2.png" id="l2" style="display: none;">
+      <img src="hangmanPng/capa3.png" id="l3" style="display: none;">
+      <img src="hangmanPng/capa4.png" id="l4" style="display: none;">
+      <img src="hangmanPng/capa5.png" id="l5" style="display: none;">
+      <div id="l6" style="display: none;">
+        <p>¡HAS GANADO! </p>
+        <img src="hangmanPng/ganador.png">
+      </div>
+      <div id="l7" style="display: none;">
+        <p> NO TE QUEDAN INTENTOS... has perdido :(</p>
+        <img src="hangmanPng/perdedor.png">
+      </div>
+    </h2>
+  </div>
+  <div id="word-progress-display"></div>
+  <div id="miDiv">
+    <h4 id = "keyboard" style = "display: block;">
+      <input type="button" value="a" class="letra" onclick="clicked(this)">
+      <input type="button" value="b" class="letra" onclick="clicked(this)">
+      <input type="button" value="c" class="letra" onclick="clicked(this)">
+      <input type="button" value="d" class="letra" onclick="clicked(this)">
+      <input type="button" value="e" class="letra" onclick="clicked(this)">
+      <input type="button" value="f" class="letra" onclick="clicked(this)">
+      <input type="button" value="g" class="letra" onclick="clicked(this)">
+      <input type="button" value="h" class="letra" onclick="clicked(this)">
+      <input type="button" value="i" class="letra" onclick="clicked(this)">
+      <input type="button" value="j" class="letra" onclick="clicked(this)">
+      <input type="button" value="k" class="letra" onclick="clicked(this)">
+      <input type="button" value="l" class="letra" onclick="clicked(this)">
+      <input type="button" value="m" class="letra" onclick="clicked(this)">
+      <input type="button" value="n" class="letra" onclick="clicked(this)">
+      <input type="button" value="ñ" class="letra" onclick="clicked(this)">
+      <input type="button" value="o" class="letra" onclick="clicked(this)">
+      <input type="button" value="p" class="letra" onclick="clicked(this)">
+      <input type="button" value="q" class="letra" onclick="clicked(this)">
+      <input type="button" value="r" class="letra" onclick="clicked(this)">
+      <input type="button" value="s" class="letra" onclick="clicked(this)">
+      <input type="button" value="t" class="letra" onclick="clicked(this)">
+      <input type="button" value="u" class="letra" onclick="clicked(this)">
+      <input type="button" value="v" class="letra" onclick="clicked(this)">
+      <input type="button" value="w" class="letra" onclick="clicked(this)">
+      <input type="button" value="x" class="letra" onclick="clicked(this)">
+      <input type="button" value="y" class="letra" onclick="clicked(this)">
+      <input type="button" value="z" class="letra" onclick="clicked(this)">
+    </h4>
+    <h5>
+      <button id="clue-button" value='mostrar pista' onclick="getClue()"> mostrar pista</button>
+      <button id="end-game" onclick="location.reload()">finalizar</button>
+    </h5>
+  </div>
+  <footer>
+    grupo 7 - Javascript - Seminario de lenguajes
+  </footer>
 </body>
 
 </html>

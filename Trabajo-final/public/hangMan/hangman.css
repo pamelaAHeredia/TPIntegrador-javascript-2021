@@ -2,9 +2,64 @@
     justify-content: center;
     display: flex;
     padding: 1rem;
+    font-family: 'Timothy-Regular';
+    color: #519800;
 }
-
 #word-progress-display p {
-    font-size: 1.25rem;
+    /* font-size: 1.25rem; */
+    font-size: 90px;
     margin: 0 0.5rem 0 0.5rem;
+}
+#miDiv {
+    align-items: flex-start;
+    justify-content: center;
+    display: none;
+}
+#l6{
+    font-family: 'Timothy-Regular';
+    font-size: 80px;
+    color: #ffaa0b; 
+}
+#l7{
+    font-family: 'Timothy-Regular';
+    font-size: 80px;
+    color: #154090; 
+}
+.box1{
+    font-family: futura;
+    font-size: 15px;
+    color:#5a5a7e; 
+}
+.letra{
+    font-size: 20px;
+}
+header{
+    font-family: 'Timothy-Regular';
+    font-size: 90px;
+    color: #9a2d9c;
+}
+body{
+    min-height: 100vh;
+}
+footer{
+    /* align-self: flex-end; */
+    background-color: #9a2d9c;
+    color: #eaffff; 
+    font-size: 10px;
+    font-family: futura;
+    line-height: 3;
+    text-align:center;
+    bottom:0;
+    left:0;
+    width:100%;    
+}
+.imagen{
+    justify-content: center;
+    display: flex;
+}
+@font-face {
+    font-family: 'Timothy-Regular';
+    src: url('./Timothy-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }

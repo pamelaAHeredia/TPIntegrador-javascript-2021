@@ -5,8 +5,13 @@ const app = express();
 const PORT = 3000;
 const ppt = require('./backEndPPTLS/PiedraPapelTijera');
 const ttt = require('./backEndTateti/tatetiBack');
+<<<<<<< HEAD
 const hm = require ('./HangMan')
 const cors = require('cors');
+=======
+const hm = require ('./backEndHangman/hangMan');
+//const cors = require('cors');
+>>>>>>> 1fe9158 (cambios ahorcado)
 const SalasManager = require('./shared/SalasManager');
 const sm = new SalasManager(path.join(__dirname, './backEndPPTLS/infoSalas.json'), 'utf-8');
 
@@ -73,12 +78,8 @@ app.patch('/tateti/salas/:salaId',ttt.jugarMano);
 app.delete('/tateti/cerrar/:salaId',ttt.cerrarSala);
 
 //Hangman
-app.get('/HangMan/' , (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'public/HangMan/HangMan.html'));
-});
-
 // Crear una sala
 app.post('/HangMan/salas', hm.crearSala);
-
+app.patch('/HangMan/salas/:salaId', hm.jugarLetra); 
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
