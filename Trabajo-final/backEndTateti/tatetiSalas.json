@@ -1,1 +1,26 @@
-[]
+[
+     {
+          "id": "JBJaoUe4K",
+          "playersIDs": [
+               "8Y0p8fpWgA",
+               null
+          ],
+          "progresoDeTablero": [
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null
+          ],
+          "progresoX": [],
+          "progresoO": [],
+          "turno": "X",
+          "intentosRestantes": 9,
+          "finalizada": false,
+          "gano": false
+     }
+]

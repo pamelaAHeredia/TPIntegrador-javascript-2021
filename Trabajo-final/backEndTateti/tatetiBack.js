@@ -88,14 +88,14 @@ function jugarManoController(req, res) {
     const salaID = req.params.salaId;
     const move = req.body.move;
     const idPlayer = req.body.idPlayer;
-    
+
     // seccion de validaciones
     if (typeof move !== "number") {
         res.status(400).json({ error: true, mensaje: "Debes enviar una jugada válida" })
         return;
     }
     const sala = sm.findSala(salaID);
-    
+
     if (!sala) {
         res.status(404).json({ error: true, mensaje: "Sala no encontrada" })
         return;
@@ -155,8 +155,8 @@ function jugarManoController(req, res) {
         res.status(200).json(MensajeRespondeAMovimiento);
         sm.modificarSalaPorId(salaID, sala);
         return;
-    }else {
-    // Movimientos restantes < 5 y la X podría haber ganado.(por lo menos x=3moves o=2moves)    
+    } else {
+        // Movimientos restantes < 5 y la X podría haber ganado.(por lo menos x=3moves o=2moves)    
         // tengo que constatar que alguno de los jugadores en su progreso tenga una mano ganadora
         //alguien ganó
         //recorre todo el json verificando si un win(mano ganadora) está incluido en el progreso del jugador
@@ -173,12 +173,12 @@ function jugarManoController(req, res) {
                     error: false,
                     mensaje: `Ha ganado X!`
                 }
-                sala.finalizada=true;
+                sala.finalizada = true;
                 sm.modificarSalaPorId(salaID, sala);
-                
+
                 res.status(200).json(MensajeRespondeAMovimiento);
                 return;
-            //gana el circulo 
+                //gana el circulo 
             } else if (sala.progresoO.includes(x.win[0]) && sala.progresoO.includes(x.win[1]) && sala.progresoO.includes(x.win[2])) {
                 const MensajeRespondeAMovimiento = {
                     salaID: sala.id,
@@ -190,11 +190,11 @@ function jugarManoController(req, res) {
                     error: false,
                     mensaje: `Ha ganado O!`
                 }
-                sala.finalizada=true;
+                sala.finalizada = true;
                 sm.modificarSalaPorId(salaID, sala);
-                res.status(200).json(MensajeRespondeAMovimiento);        
-            return;
-            }    
+                res.status(200).json(MensajeRespondeAMovimiento);
+                return;
+            }
         }
 
         //  partida empatada
@@ -208,7 +208,7 @@ function jugarManoController(req, res) {
                 error: false,
                 mensaje: "Empate! :( no quedan casillas por llenar en el tablero"
             }
-            sala.finalizada=true;
+            sala.finalizada = true;
             res.status(200).json(MensajeRespondeAMovimiento);
             sm.modificarSalaPorId(salaID, sala);
             return;
@@ -242,14 +242,14 @@ function solicitarInfoSalaController(req, res) {
     if (!sala) return res.status(404).json({ error: true, mensaje: "Sala no encontrada" });
 
     if (!sala.playersIDs.some(player => player === playerId)) return res.status(401).json({ error: true, mensaje: "No eres un jugador de esta sala" });
-   
+
     // valido para pedir informacion
     const MensajeInformacionPedida = {
         salaID,
         idPlayer: playerId,
         turno: sala.turno,
         progresoDeTablero: sala.progresoDeTablero,
-        intentosRestantes:sala.intentosRestantes,
+        intentosRestantes: sala.intentosRestantes,
         error: false,
         mensaje: "",
         finalizada: sala.finalizada,
@@ -258,7 +258,7 @@ function solicitarInfoSalaController(req, res) {
     res.status(200).json(MensajeInformacionPedida);
 }
 
-function cerrarSalaController(req,res){
+function cerrarSalaController(req, res) {
     const salaID = req.params.salaId;
     const sala = sm.findSala(salaID);
     if (!sala) {

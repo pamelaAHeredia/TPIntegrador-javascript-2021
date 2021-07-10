@@ -91,7 +91,6 @@ setInterval(async () => {
     }
 }, 1000);
 
-
 //función consulta estado continuamente (con el intervalo seteado anteriormente)
 async function displayTime() {
     if (playerID && salaID) {
@@ -157,7 +156,6 @@ function clicked(boton) {
 
 //copia la id de la sala 
 function copyingId() {
-    //document.getElementById("copyRoom")
     let text = document.getElementById("room-id-display1").value;
     copyTextToClipboard(text);
 }
@@ -172,17 +170,8 @@ async function copyTextToClipboard(text) {
     document.getElementById("room-id-textBox").style.display = "none";
 }
 
-//función borra la sala del json y "sale" de la sala.
-// async function cerrarSala(salaID) {
-//     const response = await getData(`/tateti/cerrar/${salaID}`, { salaID }, "DELETE")
-//     if (response.error) {
-//         alert(response.mensaje);
-//         move.innerHTML.disabled = false;
-//         return
-//     }
-// }
 function cerrarSala(salaID) {
-    fetch(`/tateti/cerrar/${salaID}`, { method: "DELETE"} )
+    fetch(`/tateti/cerrar/${salaID}`, { method: "DELETE" })
         .then(res => res.json())
         .then(succes => {
             if (succes.error) {
