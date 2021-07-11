@@ -6,10 +6,10 @@ const PORT = 3000;
 const ppt = require('./backEndPiedraPapelTijera/piedraPapelTijera.js');
 const ttt = require('./backEndTateti/tatetiBack');
 const hm = require ('./backEndHangman/hangMan');
-const SalasManager = require('./shared/salasManager');
+const SalasManager = require('./shared/SalasManager');
 const smp = new SalasManager(path.join(__dirname, './backEndPiedraPapelTijera/infoSalas.json'), 'utf-8');
-const smHm = new SalasManager(path.join(__dirname, './backEndHangMan/salasHangMan.json'), 'utf-8');
-
+const smHm = new SalasManager(path.join(__dirname, './backEndHangman/salasHangman.json'), 'utf-8');
+const smt =  new SalasManager(path.join(__dirname, './backEndTateti/tatetiSalas.json'), 'utf-8');
 app.use(express.static('public'));
 app.use(express.json());
 
@@ -64,11 +64,74 @@ app.delete('/PPTLS/:idJugador', (req, res) => {
 
 //Ta te ti
 //controllers
-app.post('/tateti/salas', ttt.crearSala);
-app.post('/tateti/salas/unirse/:salaId', ttt.unirseSala);
-app.post('/tateti/info', ttt.solicitarInfoSala);
-app.patch('/tateti/salas/:salaId',ttt.jugarMano);
-app.delete('/tateti/cerrar/:salaId',ttt.cerrarSala);
+
+app.post('/tateti/salas', (req, res) => {
+    let msj = ttt.crearSala();
+    res.status(200).json(msj);
+});
+
+
+app.post('/tateti/salas/unirse/:salaId', (req, res) => {
+    const salaID = req.params.salaId;
+    const sala = smt.findSala(salaID);
+    if (!sala) 
+        res.status(404).json({ error: true, mensaje: "Sala no encontrada" })
+    else if ((!sala.playersIDs.some(id => id === null)))
+        res.status(400).json({ error: true, mensaje: "Sala llena" });
+    else {
+        let msj =ttt.unirseSala(sala, salaID);
+        res.status(200).json(msj);
+    }
+});
+
+app.post('/tateti/info', (req, res) => {
+    const salaID = req.body.salaID;
+    const playerId = req.body.playerID;
+    const sala = smt.findSala(salaID);
+    if (!playerId)
+        res.status(400).json({ error: true, mensaje: "Debes enviar el id de un jugador en la query 'playerId'" });
+    else if (!sala)
+        res.status(404).json({ error: true, mensaje: "Sala no encontrada" });
+    else if (!sala.playersIDs.some(player => player === playerId)) 
+        res.status(401).json({ error: true, mensaje: "No eres un jugador de esta sala" });
+    else {
+        let msj = ttt.solicitarInfoSala(salaID, playerId, sala);
+        res.status(200).json(msj);
+    }
+});
+
+app.patch('/tateti/salas/:salaId', (req, res) => {
+    const salaID = req.params.salaId;
+    const move = req.body.move;
+    const idPlayer = req.body.idPlayer;
+    const sala = smt.findSala(salaID);
+    if (typeof move !== "number") 
+        res.status(400).json({ error: true, mensaje: "Debes enviar una jugada válida" })
+    else if (!sala) 
+        res.status(404).json({ error: true, mensaje: "Sala no encontrada" })
+    else if ((idPlayer !== sala.playersIDs[0] && idPlayer !== sala.playersIDs[1]))
+        res.status(400).json({ error: true, mensaje: "Alto ahí! Usted no pertenece a esta sala!" })
+    else {
+           let info = ttt.jugarMano(salaID, move, idPlayer, sala);
+           if (info.error)
+               res.status(400).json(info);
+           else
+               res.status(200).json(info)
+       }
+});
+
+app.delete('/tateti/cerrar/:salaId',(req,res) => {
+	const salaID = req.params.salaId;
+    const sala = smt.findSala(salaID);
+    if (!sala) {
+        res.status(404).json({ error: true, mensaje: "Sala no encontrada, es probable que tu rival ya la haya eliminado" })
+        return;
+    }else{
+		smt.eliminarSalaPorID(salaID);
+		res.status(200).json({ error: false, mensaje: "Sala eliminada." })
+	}
+});
+
 
 //Hangman
 

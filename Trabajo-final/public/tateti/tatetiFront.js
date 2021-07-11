@@ -113,9 +113,9 @@ async function displayTime() {
                 document.getElementById("mensajeFinal").innerHTML = 'Partido Terminado, ha ganado la X';
             }
             document.getElementById("mensajeFinal").style.display = "block";
+            document.getElementById("div2").style.display = "block";
             document.getElementById("tablero").style.display = "none";
             document.getElementById("div1").style.display = "none";
-            document.getElementById("div2").style.display = "block";
             return;
         }
     }
@@ -184,11 +184,18 @@ function cerrarSala(salaID) {
 }
 
 function otraPartida() {
-    cerrarSala(salaID);
+    // cerrarSala(salaID);
     location.reload();
 }
 
 function cerrarSalaOnclick() {
     cerrarSala(salaID);
+    
+    // document.getElementById("mensajeFinal").style.display = "none";
+    document.getElementById("cerrar").style.display = "none";
+    document.getElementById("opciones").style.display = "block";
+}   
+
+function volverOnclick() { 
     location.href = "../index.html";
 }

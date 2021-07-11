@@ -9,14 +9,8 @@
     <script type="text/javascript" defer src="tatetiFront.js"></script>
 </head>
 
-<<<<<<< HEAD
 <body style="background-color: #c0ba64; padding-left: 45%;">
-=======
-<body style="background-color: #fffbf3; padding-left: 45%;">
->>>>>>> 1fe9158 (cambios ahorcado)
-
     <h1 class="headder">TaTeTi grupo 7</h1>
-
     <div id="div1" style="display:none; margin-top: 70px;">
         <!-- <input id="room-id-display1" class="display">
         <input type=button value="Copiar" id="copyRoom"  onclick="cp()"> -->
@@ -25,12 +19,10 @@
         <h3 id="turn-display" class="display"></h3>
         <h3i id="ficha" style="font-family: Arial, Helvetica, sans-serif;"> TU FICHA: <h3>
     </div>
-
     <div id="room-id-textBox" style="display: none;">
         <textarea style="width: 77px; height:17px;" id="room-id-display1"></textarea>
         <button id="copyRoom" onclick="copyingId()">Copiar</button>
     </div>
-
     <table class="botones" id="tablero" style="display : none ">
         <tr>
             <td><input type=button value="" name="btn0" id="0" class="botones" onclick="clicked(this)" /></td>
@@ -49,11 +41,16 @@
         </tr>
     </table>
 
-    <div id="div2" class="finale" style="display:none; ">
+    <div id="div2" class="finale" style="display: none;">
+        <button id="cerrar" onclick="cerrarSalaOnclick()">Cerrar sala</button>
+    </div>
+
+    <div id="opciones" class="finale" style="display:none; ">
         <p id="mensajeFinal" style="display: none;"></p>
         <button onclick="otraPartida()">Otra Partida?</button>
-        <button id="volver" onclick="cerrarSalaOnclick()">Volver</button>
+        <button id="volver" onclick="volverOnclick()">Volver</button>
     </div>
+
     <div id="create" class="display" style="margin-top: 250px; display: block;">
         <button id="crearSala" onclick="requestNewRoom()">
             CREAR SALA
