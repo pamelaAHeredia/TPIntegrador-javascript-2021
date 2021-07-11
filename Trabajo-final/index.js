@@ -8,8 +8,7 @@ const ttt = require('./backEndTateti/tatetiBack');
 const hm = require ('./backEndHangman/hangMan');
 const SalasManager = require('./shared/salasManager');
 const smp = new SalasManager(path.join(__dirname, './backEndPiedraPapelTijera/infoSalas.json'), 'utf-8');
-
-
+const smHm = new SalasManager(path.join(__dirname, './backEndHangMan/salasHangMan.json'), 'utf-8');
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -72,8 +71,22 @@ app.patch('/tateti/salas/:salaId',ttt.jugarMano);
 app.delete('/tateti/cerrar/:salaId',ttt.cerrarSala);
 
 //Hangman
-// Crear una sala
-app.post('/HangMan/salas', hm.crearSala);
-app.patch('/HangMan/salas/:salaId', hm.jugarLetra); 
+
+app.post('/HangMan/salas', (req, res) => {
+    let msj = hm.crearSala()
+    res.status(200).json(msj);
+})
+
+app.patch('/HangMan/salas/:salaId', (req, res) => {
+    const roomId = req.params.salaId;
+    const letra = req.body.letra;
+    const sala = smHm.findSala(roomId);
+    if (!sala) 
+        res.status(404).json({ error: true, mensaje: "Sala no encontrada"})
+     else {
+         let msj = hm.jugarLetra(roomId, letra, sala);
+         res.status(200).json(msj);
+     }
+})
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
